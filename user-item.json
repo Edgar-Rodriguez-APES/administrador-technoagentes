@@ -1,0 +1,13 @@
+{
+  "PK": {"S": "TENANT#tenant-001"},
+  "SK": {"S": "USER#admin@example.com"},
+  "GSI1PK": {"S": "USER#admin@example.com"},
+  "GSI1SK": {"S": "TENANT#tenant-001"},
+  "email": {"S": "admin@example.com"},
+  "role": {"S": "ADMIN"},
+  "status": {"S": "ACTIVE"},
+  "firstName": {"S": "Admin"},
+  "lastName": {"S": "User"},
+  "createdAt": {"S": "2025-05-16T16:28:00Z"},
+  "updatedAt": {"S": "2025-05-16T16:28:00Z"}
+}

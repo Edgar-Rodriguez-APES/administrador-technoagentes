@@ -1,0 +1,30 @@
+version: 1
+applications:
+  - appRoot: frontend
+    backend:
+      phases:
+        build:
+          commands:
+            - '# No backend build commands'
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**/*
+    environment:
+      variables:
+        NEXT_PUBLIC_API_URL: 'https://API_GATEWAY_URL'
+        NEXT_PUBLIC_COGNITO_CLIENT_ID: 'COGNITO_CLIENT_ID'
+        NEXT_PUBLIC_COGNITO_USER_POOL_ID: 'COGNITO_USER_POOL_ID'
+        NEXT_PUBLIC_APP_NAME: 'Administrador Technoagentes'

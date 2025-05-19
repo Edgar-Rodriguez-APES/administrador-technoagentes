@@ -1,0 +1,91 @@
+/**
+ * Main Terraform Configuration for Incremental Deployment
+ * 
+ * This file contains only the basic resources needed for the first phase of deployment.
+ */
+
+provider "aws" {
+  region = var.aws_region
+}
+
+# DynamoDB Tables
+resource "aws_dynamodb_table" "tenants" {
+  name           = "${var.project_name}-tenants-${var.environment}"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "tenantId"
+  
+  attribute {
+    name = "tenantId"
+    type = "S"
+  }
+  
+  tags = {
+    Name        = "${var.project_name}-tenants"
+    Environment = var.environment
+  }
+}
+
+resource "aws_dynamodb_table" "users" {
+  name           = "${var.project_name}-users-${var.environment}"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "PK"
+  range_key      = "SK"
+  
+  attribute {
+    name = "PK"
+    type = "S"
+  }
+  
+  attribute {
+    name = "SK"
+    type = "S"
+  }
+  
+  tags = {
+    Name        = "${var.project_name}-users"
+    Environment = var.environment
+  }
+}
+
+# S3 Bucket
+resource "aws_s3_bucket" "shared_tenant_bucket" {
+  bucket = "${var.project_name}-tenant-data-${var.environment}"
+  
+  tags = {
+    Name        = "${var.project_name}-tenant-data"
+    Environment = var.environment
+  }
+}
+
+# Block public access for the shared bucket
+resource "aws_s3_bucket_public_access_block" "shared_bucket_public_access_block" {
+  bucket = aws_s3_bucket.shared_tenant_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# Secrets Manager for Treli API keys
+resource "aws_secretsmanager_secret" "payment_secrets" {
+  name        = "${var.project_name}-payment-secrets-${var.environment}"
+  description = "API keys for payment providers"
+  
+  tags = {
+    Name        = "${var.project_name}-payment-secrets"
+    Environment = var.environment
+  }
+}
+
+resource "aws_secretsmanager_secret_version" "payment_secrets_version" {
+  secret_id = aws_secretsmanager_secret.payment_secrets.id
+  
+  secret_string = jsonencode({
+    TRELI_API_KEY          = var.treli_api_key
+    TRELI_WEBHOOK_SECRET   = var.treli_webhook_secret
+    TRELI_PRICE_BASIC      = var.treli_price_basic
+    TRELI_PRICE_STANDARD   = var.treli_price_standard
+    TRELI_PRICE_PREMIUM    = var.treli_price_premium
+  })
+}

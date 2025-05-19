@@ -1,0 +1,33 @@
+service: administrador-technoagentes-minimal
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    ENVIRONMENT: ${self:provider.stage}
+
+package:
+  individually: false
+  excludeDevDependencies: true
+  patterns:
+    - '!node_modules/**'
+    - '!.serverless/**'
+    - '!.git/**'
+    - '!dist/**'
+    - '!docs/**'
+    - '!infrastructure/**'
+    - '!simple-infra/**'
+    - '!-p/**'
+    - 'src/hello.js'
+
+functions:
+  hello:
+    handler: src/hello.handler
+    events:
+      - http:
+          path: hello
+          method: get

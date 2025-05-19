@@ -1,0 +1,7 @@
+{
+  "name": "administrador-technoagentes-dev",
+  "description": "API para Administrador Technoagentes",
+  "endpointConfiguration": {
+    "types": ["REGIONAL"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"configType\": \"GENERAL\", \"settings\": {\"enabledAgents\": [\"basic\"], \"usageLimits\": {\"apiCalls\": 1000, \"storage\": 5}, \"uiSettings\": {\"theme\": \"default\", \"logo\": null}}}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

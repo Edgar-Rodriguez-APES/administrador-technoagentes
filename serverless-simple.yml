@@ -1,0 +1,124 @@
+service: administrador-technoagentes
+
+frameworkVersion: '3'
+
+custom:
+  treliPrices:
+    basic: price_basic_example
+    standard: price_standard_example
+    premium: price_premium_example
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    ENVIRONMENT: ${self:provider.stage}
+    TENANTS_TABLE: !Ref TenantsTable
+    USERS_TABLE: !Ref UsersTable
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:*
+          Resource:
+            - !GetAtt TenantsTable.Arn
+            - !GetAtt UsersTable.Arn
+            - !Join ['', [!GetAtt TenantsTable.Arn, '/index/*']]
+            - !Join ['', [!GetAtt UsersTable.Arn, '/index/*']]
+
+plugins:
+  - serverless-iam-roles-per-function
+
+package:
+  individually: false
+  excludeDevDependencies: false
+  patterns:
+    - '!node_modules/.bin/**'
+    - '!node_modules/@types/**'
+    - '!node_modules/typescript/**'
+    - '!node_modules/serverless/**'
+    - '!.serverless/**'
+    - '!.git/**'
+    - '!dist/**'
+    - '!docs/**'
+    - '!infrastructure/**'
+    - '!simple-infra/**'
+    - '!-p/**'
+    - 'src/**'
+
+functions:
+  # Tenant Users API
+  getTenantUsers:
+    handler: src/api/tenant-users-handler.handler
+    events:
+      - http:
+          path: tenants/users
+          method: get
+
+  createTenantUser:
+    handler: src/api/tenant-users-handler.handler
+    events:
+      - http:
+          path: tenants/users
+          method: post
+
+resources:
+  Resources:
+    # DynamoDB Tables
+    TenantsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-tenants-${self:provider.stage}-v2
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenantId
+            AttributeType: S
+          - AttributeName: status
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenantId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: StatusIndex
+            KeySchema:
+              - AttributeName: status
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-users-${self:provider.stage}-v2
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+          - AttributeName: GSI1PK
+            AttributeType: S
+          - AttributeName: GSI1SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: GSI1
+            KeySchema:
+              - AttributeName: GSI1PK
+                KeyType: HASH
+              - AttributeName: GSI1SK
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL

@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"id\": \"$input.params('userId')\", \"email\": \"$input.path('$.email')\", \"firstName\": \"$input.path('$.firstName')\", \"lastName\": \"$input.path('$.lastName')\", \"role\": \"$input.path('$.role')\", \"status\": \"$input.path('$.status')\", \"updatedAt\": \"2025-05-16T18:05:00Z\"}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

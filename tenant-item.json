@@ -1,0 +1,9 @@
+{
+  "tenantId": {"S": "tenant-001"},
+  "name": {"S": "Empresa de Ejemplo"},
+  "email": {"S": "admin@example.com"},
+  "status": {"S": "ACTIVE"},
+  "plan": {"S": "BASIC"},
+  "createdAt": {"S": "2025-05-16T16:27:00Z"},
+  "updatedAt": {"S": "2025-05-16T16:27:00Z"}
+}

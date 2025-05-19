@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"configType\": \"$input.params('configType')\", \"settings\": $input.json('$.settings'), \"updatedAt\": \"2025-05-16T18:15:00Z\"}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

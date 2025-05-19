@@ -1,0 +1,59 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Build files
+/dist
+/build
+*.zip
+*.pack
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Terraform
+deployment/aws-deployment/providers/
+deployment/aws-deployment/webapp/client-production/
+.terraform/
+infrastructure/.terraform/
+simple-infra/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+terraform-provider-*
+**/*.exe
+
+# Next.js build files
+.next/
+deploy-temp/.next/
+frontend/.next/
+**/client-production/
+**/*.pack
+**/*.node

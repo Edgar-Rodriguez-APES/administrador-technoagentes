@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseModels": {
+    "application/json": "Empty"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": true
+  }
+}

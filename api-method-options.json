@@ -1,0 +1,9 @@
+{
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {
+    "method.request.header.Access-Control-Allow-Headers": false,
+    "method.request.header.Access-Control-Allow-Methods": false,
+    "method.request.header.Access-Control-Allow-Origin": false
+  }
+}

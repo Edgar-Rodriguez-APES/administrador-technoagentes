@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"accepted\": true, \"version\": \"$input.path('$.version')\", \"acceptedAt\": \"2025-05-16T18:20:00Z\"}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

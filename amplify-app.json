@@ -1,0 +1,6 @@
+{
+  "name": "administrador-technoagentes-dev",
+  "description": "Frontend para Administrador Technoagentes",
+  "platform": "WEB",
+  "buildSpec": "version: 1\nfrontend:\n  phases:\n    preBuild:\n      commands:\n        - cd frontend\n        - npm ci\n    build:\n      commands:\n        - npm run build\n  artifacts:\n    baseDirectory: .next\n    files:\n      - '**/*'\n  cache:\n    paths:\n      - node_modules/**/*\n      - .next/cache/**/*"
+}

@@ -1,0 +1,9 @@
+{
+  "UserPoolId": "us-east-1_lJikpz0Bu",
+  "ClientId": "67tqo3vsmpg25bt50f1sud1rk0",
+  "ExplicitAuthFlows": [
+    "ALLOW_USER_SRP_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH",
+    "ALLOW_USER_PASSWORD_AUTH"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "PK": {"S": "TENANT#tenant-001"},
+  "SK": {"S": "CONFIG#GENERAL"},
+  "configType": {"S": "GENERAL"},
+  "settings": {"M": {
+    "enabledAgents": {"L": [{"S": "basic"}]},
+    "usageLimits": {"M": {
+      "apiCalls": {"N": "1000"},
+      "storage": {"N": "5"}
+    }},
+    "uiSettings": {"M": {
+      "theme": {"S": "default"},
+      "logo": {"NULL": true}
+    }}
+  }},
+  "createdAt": {"S": "2025-05-16T16:29:00Z"},
+  "updatedAt": {"S": "2025-05-16T16:29:00Z"}
+}

@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"accepted\": true, \"version\": \"v1.0\", \"acceptedAt\": \"2025-05-16T16:30:00Z\"}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

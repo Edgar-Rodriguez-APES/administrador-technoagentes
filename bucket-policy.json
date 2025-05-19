@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAmplifyService",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "amplify.amazonaws.com"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::administrador-technoagentes-frontend-dev-982999334337",
+        "arn:aws:s3:::administrador-technoagentes-frontend-dev-982999334337/*"
+      ]
+    }
+  ]
+}

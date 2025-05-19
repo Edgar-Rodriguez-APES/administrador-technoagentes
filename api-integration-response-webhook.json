@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"received\": true, \"eventId\": \"evt_123456\", \"eventType\": \"payment.success\", \"processedAt\": \"2025-05-16T18:30:00Z\"}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

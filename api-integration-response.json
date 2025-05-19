@@ -1,0 +1,9 @@
+{
+  "statusCode": "200",
+  "responseTemplates": {
+    "application/json": "{\"users\": [{\"id\": \"user-001\", \"email\": \"admin@example.com\", \"firstName\": \"Admin\", \"lastName\": \"User\", \"role\": \"ADMIN\", \"status\": \"ACTIVE\"}]}"
+  },
+  "responseParameters": {
+    "method.response.header.Access-Control-Allow-Origin": "'*'"
+  }
+}

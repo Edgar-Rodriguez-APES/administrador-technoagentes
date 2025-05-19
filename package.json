@@ -1,0 +1,33 @@
+{
+  "name": "administrador-technoagentes",
+  "version": "1.0.0",
+  "description": "Backend para un portal web empresarial multi-inquilino en AWS",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod"
+  },
+  "keywords": [
+    "aws",
+    "multi-tenant",
+    "saas",
+    "serverless"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1450.0",
+    "axios": "^1.6.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "jest": "^29.6.4",
+    "serverless": "^3.34.0",
+    "serverless-iam-roles-per-function": "^3.2.0",
+    "serverless-plugin-typescript": "^2.1.5",
+    "typescript": "^5.2.2"
+  }
+}

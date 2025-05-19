@@ -1,0 +1,10 @@
+{
+  "PK": {"S": "TENANT#tenant-001"},
+  "SK": {"S": "USER#admin@example.com#TC#v1.0"},
+  "GSI1PK": {"S": "TC#v1.0"},
+  "GSI1SK": {"S": "TENANT#tenant-001#USER#admin@example.com"},
+  "version": {"S": "v1.0"},
+  "acceptedAt": {"S": "2025-05-16T16:30:00Z"},
+  "ipAddress": {"S": "127.0.0.1"},
+  "userAgent": {"S": "AWS CLI"}
+}

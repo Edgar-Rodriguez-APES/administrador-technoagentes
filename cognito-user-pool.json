@@ -1,0 +1,25 @@
+{
+  "PoolName": "administrador-technoagentes-user-pool-dev",
+  "UsernameAttributes": ["email"],
+  "AutoVerifiedAttributes": ["email"],
+  "Schema": [
+    {
+      "Name": "custom:tenantId",
+      "AttributeDataType": "String",
+      "Mutable": false,
+      "Required": false
+    }
+  ],
+  "AdminCreateUserConfig": {
+    "AllowAdminCreateUserOnly": true
+  },
+  "Policies": {
+    "PasswordPolicy": {
+      "MinimumLength": 8,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": true,
+      "RequireUppercase": true
+    }
+  }
+}

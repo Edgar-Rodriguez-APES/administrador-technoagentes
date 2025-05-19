@@ -1,0 +1,10 @@
+{
+  "ClientName": "administrador-technoagentes-client-dev",
+  "UserPoolId": "us-east-1_lJikpz0Bu",
+  "GenerateSecret": false,
+  "ExplicitAuthFlows": [
+    "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH",
+    "ALLOW_USER_SRP_AUTH"
+  ]
+}

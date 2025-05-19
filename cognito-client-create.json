@@ -1,0 +1,21 @@
+{
+  "UserPoolId": "us-east-1_lJikpz0Bu",
+  "ClientName": "administrador-technoagentes-client-password-auth",
+  "GenerateSecret": false,
+  "RefreshTokenValidity": 30,
+  "AccessTokenValidity": 1,
+  "IdTokenValidity": 1,
+  "TokenValidityUnits": {
+    "AccessToken": "hours",
+    "IdToken": "hours",
+    "RefreshToken": "days"
+  },
+  "ExplicitAuthFlows": [
+    "ALLOW_USER_SRP_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH",
+    "ALLOW_USER_PASSWORD_AUTH"
+  ],
+  "SupportedIdentityProviders": [
+    "COGNITO"
+  ]
+}
