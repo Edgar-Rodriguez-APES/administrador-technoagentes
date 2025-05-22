@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { TenantService, CreateTenantRequest } from '@/services/api';
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -25,9 +26,17 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      // En un escenario real, primero se crearía el inquilino y luego se registraría el usuario
-      // Aquí simplificamos el proceso
-      await signUp(email, password, 'new-tenant-id');
+      // Create the tenant
+      const tenantData: CreateTenantRequest = {
+        name: tenantName,
+        contactEmail: email, // Assuming email can be used as contactEmail for the tenant
+        contactName: email.split('@')[0], // Or some other logic to derive a contact name
+        plan: plan,
+      };
+      const newTenant = await TenantService.createTenant(tenantData);
+      const tenantId = newTenant.id;
+
+      await signUp(email, password, tenantId);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || 'Error al registrarse. Por favor, inténtalo de nuevo.');

@@ -13,11 +13,11 @@ export default function Home() {
     // Pequeño retraso para permitir que la página se cargue completamente
     const timer = setTimeout(() => {
       // Usar window.location para una redirección directa en lugar de router.push
-      window.location.href = '/login/';
+      router.push('/login/');
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
