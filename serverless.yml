@@ -87,6 +87,7 @@ provider:
 
 plugins:
   - serverless-iam-roles-per-function
+  - serverless-offline
 
 package:
   individually: false
@@ -106,6 +107,20 @@ package:
     - 'src/**'
 
 functions:
+  # Tenant Onboarding API
+  startTenantOnboardingApi:
+    handler: src/onboarding/onboarding-api-handler.handler
+    events:
+      - http:
+          path: onboarding
+          method: post
+          cors: true
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "states:StartExecution"
+        Resource: !Ref TenantOnboardingStateMachine
+
   # Tenant Users API
   getTenantUsers:
     handler: src/api/tenant-users-handler.handler
