@@ -1,0 +1,591 @@
+service: administrador-technoagentes
+
+frameworkVersion: '3'
+
+custom:
+  treliPrices:
+    basic: price_basic_example
+    standard: price_standard_example
+    premium: price_premium_example
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    ENVIRONMENT: ${self:provider.stage}
+    USER_POOL_ID: !Ref CognitoUserPool
+    TENANTS_TABLE: !Ref TenantsTable
+    USERS_TABLE: !Ref UsersTable
+    CONFIGURATIONS_TABLE: !Ref ConfigurationsTable
+    TC_ACCEPTANCE_TABLE: !Ref TCAcceptanceTable
+    WEBHOOK_EVENTS_TABLE: !Ref WebhookEventsTable
+    TENANT_BUCKET_NAME: !Ref TenantBucket
+    ONBOARDING_STATE_MACHINE_ARN: !Ref TenantOnboardingStateMachine
+    APPCONFIG_APPLICATION: !Ref AppConfigApplication
+    APPCONFIG_ENVIRONMENT: !Ref AppConfigEnvironment
+    USE_KMS: 'true'
+    PAYMENT_SECRETS_NAME: !Ref PaymentSecrets
+    TRELI_PRICE_BASIC: ${self:custom.treliPrices.basic}
+    TRELI_PRICE_STANDARD: ${self:custom.treliPrices.standard}
+    TRELI_PRICE_PREMIUM: ${self:custom.treliPrices.premium}
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - cognito-idp:*
+          Resource: !GetAtt CognitoUserPool.Arn
+        - Effect: Allow
+          Action:
+            - dynamodb:*
+          Resource:
+            - !GetAtt TenantsTable.Arn
+            - !GetAtt UsersTable.Arn
+            - !GetAtt ConfigurationsTable.Arn
+            - !GetAtt TCAcceptanceTable.Arn
+            - !GetAtt WebhookEventsTable.Arn
+            - !Join ['', [!GetAtt TenantsTable.Arn, '/index/*']]
+            - !Join ['', [!GetAtt UsersTable.Arn, '/index/*']]
+            - !Join ['', [!GetAtt ConfigurationsTable.Arn, '/index/*']]
+            - !Join ['', [!GetAtt TCAcceptanceTable.Arn, '/index/*']]
+        - Effect: Allow
+          Action:
+            - s3:*
+          Resource:
+            - !GetAtt TenantBucket.Arn
+            - !Join ['', [!GetAtt TenantBucket.Arn, '/*']]
+        - Effect: Allow
+          Action:
+            - kms:Encrypt
+            - kms:Decrypt
+            - kms:ReEncrypt*
+            - kms:GenerateDataKey*
+            - kms:DescribeKey
+          Resource: !GetAtt TenantSharedKey.Arn
+        - Effect: Allow
+          Action:
+            - states:StartExecution
+            - states:DescribeExecution
+          Resource: !Ref TenantOnboardingStateMachine
+        - Effect: Allow
+          Action:
+            - appconfig:GetConfiguration
+            - appconfig:StartConfigurationSession
+          Resource: '*'
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+            - ses:SendRawEmail
+          Resource: '*'
+        - Effect: Allow
+          Action:
+            - secretsmanager:GetSecretValue
+          Resource: !Ref PaymentSecrets
+
+plugins:
+  - serverless-iam-roles-per-function
+  - serverless-offline
+
+package:
+  individually: false
+  excludeDevDependencies: false
+  patterns:
+    - '!node_modules/.bin/**'
+    - '!node_modules/@types/**'
+    - '!node_modules/typescript/**'
+    - '!node_modules/serverless/**'
+    - '!.serverless/**'
+    - '!.git/**'
+    - '!dist/**'
+    - '!docs/**'
+    - '!infrastructure/**'
+    - '!simple-infra/**'
+    - '!-p/**'
+    - 'src/**'
+
+functions:
+  # Tenant Onboarding API
+  startTenantOnboardingApi:
+    handler: src/onboarding/onboarding-api-handler.handler
+    iamRoleStatementsName: start-onboarding-role
+    events:
+      - http:
+          path: onboarding
+          method: post
+          cors: true
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "states:StartExecution"
+        Resource: !Ref TenantOnboardingStateMachine
+
+  # Tenant Users API
+  getTenantUsers:
+    handler: src/api/tenant-users-handler.handler
+    iamRoleStatementsName: get-users-role
+    events:
+      - http:
+          path: tenants/users
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  createTenantUser:
+    handler: src/api/tenant-users-handler.handler
+    iamRoleStatementsName: create-users-role
+    events:
+      - http:
+          path: tenants/users
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  updateTenantUser:
+    handler: src/api/tenant-users-handler.handler
+    iamRoleStatementsName: update-users-role
+    events:
+      - http:
+          path: tenants/users/{userId}
+          method: put
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  deleteTenantUser:
+    handler: src/api/tenant-users-handler.handler
+    iamRoleStatementsName: delete-users-role
+    events:
+      - http:
+          path: tenants/users/{userId}
+          method: delete
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  # Tenant Configuration API
+  getTenantConfig:
+    handler: src/api/tenant-config-handler.handler
+    iamRoleStatementsName: get-config-role
+    events:
+      - http:
+          path: tenants/configurations/{configType}
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  updateTenantConfig:
+    handler: src/api/tenant-config-handler.handler
+    iamRoleStatementsName: update-config-role
+    events:
+      - http:
+          path: tenants/configurations/{configType}
+          method: put
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  # Terms and Conditions API
+  checkTCAcceptance:
+    handler: src/api/tc-acceptance-handler.handler
+    iamRoleStatementsName: checkTCAcceptance-role
+    events:
+      - http:
+          path: tc-acceptance
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  recordTCAcceptance:
+    handler: src/api/tc-acceptance-handler.handler
+    iamRoleStatementsName: recordTCAcceptance-role
+    events:
+      - http:
+          path: tc-acceptance
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref ApiGatewayAuthorizer
+
+  # Payment Webhook Handler
+  paymentWebhook:
+    handler: src/api/webhook-handler.handler
+    iamRoleStatementsName: payment-webhook-role
+    events:
+      - http:
+          path: webhooks/payment
+          method: post
+          # No authorizer for webhooks - they use their own signature verification
+
+  # Tenant Onboarding Step Functions Tasks
+  tenantOnboarding:
+    handler: src/onboarding/tenant-onboarding-service.createTenantRecord
+
+  configureCognitoGroups:
+    handler: src/onboarding/tenant-onboarding-service.configureCognitoGroups
+
+  createSuperUser:
+    handler: src/onboarding/tenant-onboarding-service.createSuperUser
+
+  setupInitialConfiguration:
+    handler: src/onboarding/tenant-onboarding-service.setupInitialConfiguration
+
+  sendWelcomeEmail:
+    handler: src/onboarding/tenant-onboarding-service.sendWelcomeEmail
+
+resources:
+  Resources:
+    # Cognito User Pool
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: ${self:service}-user-pool-${self:provider.stage}
+        UsernameAttributes:
+          - email
+        AutoVerifyAttributes:
+          - email
+        Schema:
+          - Name: custom:tenantId
+            AttributeDataType: String
+            Mutable: false
+            Required: true
+        AdminCreateUserConfig:
+          AllowAdminCreateUserOnly: true
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 8
+            RequireLowercase: true
+            RequireNumbers: true
+            RequireSymbols: true
+            RequireUppercase: true
+
+    # Cognito User Pool Client
+    CognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: ${self:service}-client-${self:provider.stage}
+        UserPoolId: !Ref CognitoUserPool
+        GenerateSecret: false
+        ExplicitAuthFlows:
+          - ALLOW_ADMIN_USER_PASSWORD_AUTH
+          - ALLOW_REFRESH_TOKEN_AUTH
+          - ALLOW_USER_SRP_AUTH
+
+    # Cognito Identity Pool
+    CognitoIdentityPool:
+      Type: AWS::Cognito::IdentityPool
+      Properties:
+        IdentityPoolName: ${self:service}-identity-pool-${self:provider.stage}
+        AllowUnauthenticatedIdentities: false
+        CognitoIdentityProviders:
+          - ClientId: !Ref CognitoUserPoolClient
+            ProviderName: !GetAtt CognitoUserPool.ProviderName
+
+    # API Gateway Authorizer
+    ApiGatewayAuthorizer:
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        Name: cognito-authorizer
+        RestApiId: !Ref ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        IdentitySource: method.request.header.Authorization
+        ProviderARNs:
+          - !GetAtt CognitoUserPool.Arn
+
+    # DynamoDB Tables
+    TenantsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-tenants-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenantId
+            AttributeType: S
+          - AttributeName: status
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenantId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: StatusIndex
+            KeySchema:
+              - AttributeName: status
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        SSESpecification:
+          SSEEnabled: true
+          SSEType: KMS
+          KMSMasterKeyId: !Ref TenantSharedKey
+
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-users-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+          - AttributeName: GSI1PK
+            AttributeType: S
+          - AttributeName: GSI1SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: GSI1
+            KeySchema:
+              - AttributeName: GSI1PK
+                KeyType: HASH
+              - AttributeName: GSI1SK
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        SSESpecification:
+          SSEEnabled: true
+          SSEType: KMS
+          KMSMasterKeyId: !Ref TenantSharedKey
+
+    ConfigurationsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-configurations-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        SSESpecification:
+          SSEEnabled: true
+          SSEType: KMS
+          KMSMasterKeyId: !Ref TenantSharedKey
+
+    TCAcceptanceTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-tc-acceptance-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+          - AttributeName: GSI1PK
+            AttributeType: S
+          - AttributeName: GSI1SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: GSI1
+            KeySchema:
+              - AttributeName: GSI1PK
+                KeyType: HASH
+              - AttributeName: GSI1SK
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        SSESpecification:
+          SSEEnabled: true
+          SSEType: KMS
+          KMSMasterKeyId: !Ref TenantSharedKey
+
+    WebhookEventsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-webhook-events-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: eventId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: eventId
+            KeyType: HASH
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+
+    # S3 Bucket
+    TenantBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-tenant-data-${self:provider.stage}-982999334337
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: aws:kms
+                KMSMasterKeyId: !Ref TenantSharedKey
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        VersioningConfiguration:
+          Status: Enabled
+
+    # KMS Key
+    TenantSharedKey:
+      Type: AWS::KMS::Key
+      Properties:
+        Description: Shared KMS key for tenant data encryption
+        EnableKeyRotation: true
+        KeyPolicy:
+          Version: '2012-10-17'
+          Statement:
+            - Sid: Enable IAM User Permissions
+              Effect: Allow
+              Principal:
+                AWS: !Sub arn:aws:iam::${AWS::AccountId}:root
+              Action: kms:*
+              Resource: '*'
+
+    TenantSharedKeyAlias:
+      Type: AWS::KMS::Alias
+      Properties:
+        AliasName: !Sub alias/${self:service}-tenant-shared-key-${self:provider.stage}
+        TargetKeyId: !Ref TenantSharedKey
+
+    # Step Functions State Machine
+    StepFunctionsExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: states.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: LambdaInvoke
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action: lambda:InvokeFunction
+                  Resource:
+                    - !GetAtt TenantOnboardingLambdaFunction.Arn
+                    - !GetAtt ConfigureCognitoGroupsLambdaFunction.Arn
+                    - !GetAtt CreateSuperUserLambdaFunction.Arn
+                    - !GetAtt SetupInitialConfigurationLambdaFunction.Arn
+                    - !GetAtt SendWelcomeEmailLambdaFunction.Arn
+
+    # Definición de la máquina de estados después de crear el rol de ejecución
+    TenantOnboardingStateMachine:
+      Type: AWS::StepFunctions::StateMachine
+      DependsOn: StepFunctionsExecutionRole
+      Properties:
+        StateMachineName: ${self:service}-tenant-onboarding-${self:provider.stage}
+        RoleArn: !GetAtt StepFunctionsExecutionRole.Arn
+        Definition:
+          Comment: Tenant Onboarding Workflow
+          StartAt: CreateTenantRecord
+          States:
+            CreateTenantRecord:
+              Type: Task
+              Resource: !GetAtt TenantOnboardingLambdaFunction.Arn
+              Parameters:
+                "tenantName.$": "$.tenantName"
+                "tenantEmail.$": "$.tenantEmail"
+                "tenantPlan.$": "$.tenantPlan"
+                "paymentToken.$": "$.paymentToken"
+              ResultPath: "$.tenantResult"
+              Next: ConfigureCognitoGroups
+            ConfigureCognitoGroups:
+              Type: Task
+              Resource: !GetAtt ConfigureCognitoGroupsLambdaFunction.Arn
+              Parameters:
+                "action": "createGroups"
+                "tenantId.$": "$.tenantResult.tenantId"
+              ResultPath: "$.groupsResult"
+              Next: CreateSuperUser
+            CreateSuperUser:
+              Type: Task
+              Resource: !GetAtt CreateSuperUserLambdaFunction.Arn
+              Parameters:
+                "email.$": "$.tenantEmail"
+                "tenantId.$": "$.tenantResult.tenantId"
+                "isFirstUser": true
+              ResultPath: "$.superUserResult"
+              Next: SetupInitialConfiguration
+            SetupInitialConfiguration:
+              Type: Task
+              Resource: !GetAtt SetupInitialConfigurationLambdaFunction.Arn
+              Parameters:
+                "tenantId.$": "$.tenantResult.tenantId"
+                "configuration":
+                  "enabledAgents": ["basic"]
+                  "usageLimits":
+                    "apiCalls": 1000
+                    "storage": 5
+                  "uiSettings":
+                    "theme": "default"
+                    "logo": null
+              ResultPath: "$.configResult"
+              Next: SendWelcomeEmail
+            SendWelcomeEmail:
+              Type: Task
+              Resource: !GetAtt SendWelcomeEmailLambdaFunction.Arn
+              Parameters:
+                "template": "WELCOME_EMAIL"
+                "to.$": "$.tenantEmail"
+                "data":
+                  "tenantName.$": "$.tenantName"
+                  "loginUrl": !Sub "https://app.technoagentes.com/login"
+                  "supportEmail": "support@technoagentes.com"
+              ResultPath: "$.emailResult"
+              End: true
+
+    # AppConfig Resources
+    AppConfigApplication:
+      Type: AWS::AppConfig::Application
+      Properties:
+        Name: ${self:service}-app-${self:provider.stage}
+        Description: AppConfig application for ${self:service} multi-tenant platform
+
+    AppConfigEnvironment:
+      Type: AWS::AppConfig::Environment
+      Properties:
+        ApplicationId: !Ref AppConfigApplication
+        Name: ${self:provider.stage}
+        Description: ${self:provider.stage} environment for ${self:service}
+
+    AppConfigTenantFeaturesProfile:
+      Type: AWS::AppConfig::ConfigurationProfile
+      Properties:
+        ApplicationId: !Ref AppConfigApplication
+        Name: tenant-features
+        LocationUri: hosted
+        Description: Configuration profile for tenant feature flags
+
+    # Secrets Manager for Payment Provider API Keys
+    PaymentSecrets:
+      Type: AWS::SecretsManager::Secret
+      Properties:
+        Name: ${self:service}-payment-secrets-${self:provider.stage}
+        Description: API keys for payment providers
+        SecretString: '{"TRELI_API_KEY":"pk_test_example","TRELI_WEBHOOK_SECRET":"whsec_example","TRELI_PRICE_BASIC":"price_basic_example","TRELI_PRICE_STANDARD":"price_standard_example","TRELI_PRICE_PREMIUM":"price_premium_example"}'
