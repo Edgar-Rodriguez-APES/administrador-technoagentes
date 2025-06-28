@@ -167,7 +167,7 @@ resources:
           - Name: custom:tenantId
             AttributeDataType: String
             Mutable: false
-            Required: true
+            Required: false
         AdminCreateUserConfig:
           AllowAdminCreateUserOnly: true
         Policies:

@@ -290,7 +290,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -326,7 +326,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -362,7 +362,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -398,7 +398,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -434,7 +434,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/onboarding/onboarding-api-handler.handler",
               "Runtime": "nodejs18.x",
@@ -470,7 +470,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -506,7 +506,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -542,7 +542,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/webhook-handler.handler",
               "Runtime": "nodejs18.x",
@@ -1373,7 +1373,7 @@
               "PaymentWebhookLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1751153085213": {
+          "ApiGatewayDeployment1751153707690": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1805,7 +1805,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/custom-resources.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z/custom-resources.zip"
               },
               "FunctionName": "administrador-technoagentes-dev-custom-resource-apigw-cw-role",
               "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -1830,7 +1830,7 @@
               "UsernameAttributes": [
                 "email"
               ],
-              "AutoVerifyAttributes": [
+              "AutoVerifiedAttributes": [
                 "email"
               ],
               "Schema": [
@@ -2612,7 +2612,7 @@
             "UsernameAttributes": [
               "email"
             ],
-            "AutoVerifyAttributes": [
+            "AutoVerifiedAttributes": [
               "email"
             ],
             "Schema": [
@@ -2858,7 +2858,7 @@
         "excludeDevDependencies": true,
         "artifactsS3KeyDirname": "serverless/administrador-technoagentes/dev/code-artifacts",
         "artifact": "C:\\Disco local\\MisProyectos\\Administrador Technoagentes\\.serverless\\administrador-technoagentes.zip",
-        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z"
+        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -2872,7 +2872,7 @@
     "artifact": "C:\\Disco local\\MisProyectos\\Administrador Technoagentes\\.serverless\\administrador-technoagentes.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z",
+    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751153783474-2025-06-28T23:36:23.474Z",
     "artifact": "administrador-technoagentes.zip"
   }
 }
