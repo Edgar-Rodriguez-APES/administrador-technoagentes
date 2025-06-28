@@ -1,0 +1,45 @@
+# CONFIGURACIÓN CORREGIDA - Agregar a serverless.yml
+
+functions:
+  getTenantUsers:
+    handler: src/api/tenant-users-handler.handler
+    events:
+      - http:
+          path: tenants/users
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref CognitoAuthorizer
+          cors: true
+
+  createTenantUser:
+    handler: src/api/tenant-users-handler.handler
+    events:
+      - http:
+          path: tenants/users
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref CognitoAuthorizer
+          cors: true
+
+  # Aplicar a TODOS los endpoints excepto webhooks
+  paymentWebhook:
+    handler: src/api/webhook-handler.handler
+    events:
+      - http:
+          path: webhooks/payment
+          method: post
+          # ✅ Sin authorizer - correcto para webhooks
+
+resources:
+  Resources:
+    CognitoAuthorizer:
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        Name: CognitoAuthorizer
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          - !GetAtt CognitoUserPool.Arn
+        RestApiId: !Ref ApiGatewayRestApi
+        IdentitySource: method.request.header.Authorization

@@ -1,0 +1,35 @@
+# CONSULTAS CLOUDWATCH LOGS INSIGHTS PARA AUDITORÍA DE SEGURIDAD
+
+# 1. INTENTOS DE ACCESO NO AUTORIZADO (401/403)
+fields @timestamp, ip, httpMethod, resourcePath, status, `error.message`
+| filter status = 401 or status = 403
+| sort @timestamp desc
+| limit 100
+
+# 2. ANÁLISIS DE PATRONES DE ACCESO SOSPECHOSO
+fields @timestamp, ip, httpMethod, resourcePath, status
+| filter status = 401 or status = 403
+| stats count() by ip, resourcePath
+| sort count desc
+
+# 3. MONITOREO DE WEBHOOKS (deben ser accesibles sin auth)
+fields @timestamp, ip, httpMethod, resourcePath, status
+| filter resourcePath like /webhooks/
+| sort @timestamp desc
+
+# 4. ACCESOS EXITOSOS POR TENANT (para detectar anomalías)
+fields @timestamp, ip, httpMethod, resourcePath, status, user
+| filter status = 200 and resourcePath like /tenants/
+| stats count() by user, ip
+| sort count desc
+
+# 5. ERRORES DE AUTORIZACIÓN ESPECÍFICOS
+fields @timestamp, ip, httpMethod, resourcePath, `authorizer.error`
+| filter ispresent(`authorizer.error`)
+| sort @timestamp desc
+
+# 6. RESUMEN DIARIO DE SEGURIDAD
+fields @timestamp, status
+| filter status = 401 or status = 403
+| stats count() by bin(5m)
+| sort @timestamp desc
