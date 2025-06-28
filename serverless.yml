@@ -301,3 +301,11 @@ resources:
             LoggingLevel: INFO
             DataTraceEnabled: true
             MetricsEnabled: true
+
+    # API Gateway Deployment
+    ApiGatewayDeployment${sls:instanceId}:
+      Type: AWS::ApiGateway::Deployment
+      Properties:
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        StageName: ${sls:stage}
