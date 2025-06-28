@@ -252,7 +252,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -288,7 +288,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -324,7 +324,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -360,7 +360,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -396,7 +396,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/onboarding/onboarding-api-handler.handler",
         "Runtime": "nodejs18.x",
@@ -432,7 +432,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tc-acceptance-handler.handler",
         "Runtime": "nodejs18.x",
@@ -468,7 +468,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tc-acceptance-handler.handler",
         "Runtime": "nodejs18.x",
@@ -504,7 +504,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1749923512865-2025-06-14T17:51:52.865Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/webhook-handler.handler",
         "Runtime": "nodejs18.x",
@@ -533,84 +533,84 @@
         "PaymentWebhookLogGroup"
       ]
     },
-    "GetTenantUsersLambdaVersionsXXp2dE1OC7UPx0vakm6SlsziupQdNmy7nqWoxLyIxQ": {
+    "GetTenantUsersLambdaVersionUw2X82osD0u2nmjMy8nfq70Mvsn0y37Hy60bPJbUQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetTenantUsersLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "CreateTenantUserLambdaVersionohnsEMTGG55budzUrvNVYjUcL5IiYiONRmpPMpT7g": {
+    "CreateTenantUserLambdaVersionSbCwPW0y4RyP3WkgWrrtm9ZsMLcjReTCf3fS0oACI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateTenantUserLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "UpdateTenantUserLambdaVersionETyPse17tQcv4OXEomvs6dwdTI64rMwKCaDYj6dI": {
+    "UpdateTenantUserLambdaVersionAyu8oiFBtMUBFCHqi4jqthmvOQvNqFHxRYg39PV0VM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateTenantUserLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "DeleteTenantUserLambdaVersionNj92x8QzEzTwMEMK0rDGE0wAWVKlbgmLQWIJnAUe1LY": {
+    "DeleteTenantUserLambdaVersionQTJ5JdVaz9qc3cQn0bQ3YGYuwlslUAzR9f02YiB6wwQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteTenantUserLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "StartTenantOnboardingLambdaVersionuCQoYzlxs7hjzvXoCRsGQSpkXnli82i65U8IMSgGxM4": {
+    "StartTenantOnboardingLambdaVersionKyfDkTsH8BNuI1sjX3BfMKcUDGW3ZlrAUZRDcST15E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "StartTenantOnboardingLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "CheckTCAcceptanceLambdaVersionUScwj5TCtFxoBWhK8DYwBemHxGImJEtfXtY7pksE": {
+    "CheckTCAcceptanceLambdaVersionGQlp2YTxfYuk0EFb7Gd0Re0O6xfMv0m3dxA9LHZlqc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CheckTCAcceptanceLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "RecordTCAcceptanceLambdaVersionRQt3LQacedNlRi2kMXOs1TC6vIeo9bof6wnqfdQqrLg": {
+    "RecordTCAcceptanceLambdaVersionf5oUbKRoNOPvuYC4EIjCPB2qWYqWtQlCEMl75n0d4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RecordTCAcceptanceLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
-    "PaymentWebhookLambdaVersionAoG0DMvUbKAdVigMI0IgQ5Dr76JsVHXZSRbtGeL8xY": {
+    "PaymentWebhookLambdaVersionQ46jglUFr7W7o8QhK6rGpZX6dF3465Ub7nSyEIpyfQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PaymentWebhookLambdaFunction"
         },
-        "CodeSha256": "CGhL1lPgNxcisV06a6Ui/PN2emDPT4QfG+li984jEzc="
+        "CodeSha256": "ezmn/3MkIwZx4uaXuE7APx5Dfhd6JpzC7VTiGnCeDeU="
       }
     },
     "ApiGatewayRestApi": {
@@ -721,6 +721,231 @@
         }
       }
     },
+    "ApiGatewayMethodTenantsUsersOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceTenantsUsers"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodTenantsUsersIdVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceTenantsUsersIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodOnboardingOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceOnboarding"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodTcDashacceptanceOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceTcDashacceptance"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodWebhooksPaymentOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceWebhooksPayment"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodTenantsUsersGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -733,7 +958,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -779,7 +1007,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -825,7 +1056,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -871,7 +1105,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -917,7 +1154,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -963,7 +1203,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -1009,7 +1252,10 @@
           "Ref": "ApiGatewayRestApi"
         },
         "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizer"
+        },
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",
@@ -1089,7 +1335,7 @@
         "PaymentWebhookLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1749923435894": {
+    "ApiGatewayDeployment1751153085213": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1098,6 +1344,11 @@
         "StageName": "dev"
       },
       "DependsOn": [
+        "ApiGatewayMethodTenantsUsersOptions",
+        "ApiGatewayMethodTenantsUsersIdVarOptions",
+        "ApiGatewayMethodOnboardingOptions",
+        "ApiGatewayMethodTcDashacceptanceOptions",
+        "ApiGatewayMethodWebhooksPaymentOptions",
         "ApiGatewayMethodTenantsUsersGet",
         "ApiGatewayMethodTenantsUsersPost",
         "ApiGatewayMethodTenantsUsersIdVarPut",
@@ -1404,6 +1655,218 @@
         }
       }
     },
+    "ApiGatewayLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/apigateway/administrador-technoagentes-dev"
+        },
+        "RetentionInDays": 30
+      }
+    },
+    "CustomApiGatewayAccountCloudWatchRole": {
+      "Type": "Custom::ApiGatewayAccountRole",
+      "Version": 1,
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDashresourceDashapigwDashcwDashroleLambdaFunction",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "IamRoleCustomResourcesLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "dev",
+                  "administrador-technoagentes",
+                  "custom-resources-lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "iam:",
+                        {
+                          "Ref": "AWS::AccountId"
+                        },
+                        "role/*"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "iam:AttachRolePolicy",
+                    "iam:CreateRole",
+                    "iam:ListAttachedRolePolicies",
+                    "iam:PassRole"
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "apigateway:*::/account"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "apigateway:GET",
+                    "apigateway:PATCH"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CustomDashresourceDashapigwDashcwDashroleLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/administrador-technoagentes/dev/1751153163581-2025-06-28T23:26:03.581Z/custom-resources.zip"
+        },
+        "FunctionName": "administrador-technoagentes-dev-custom-resource-apigw-cw-role",
+        "Handler": "api-gateway-cloud-watch-role/handler.handler",
+        "MemorySize": 1024,
+        "Runtime": "nodejs18.x",
+        "Timeout": 180,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleCustomResourcesLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleCustomResourcesLambdaExecution"
+      ]
+    },
+    "CognitoUserPool": {
+      "Type": "AWS::Cognito::UserPool",
+      "Properties": {
+        "UserPoolName": "administrador-technoagentes-user-pool-dev",
+        "UsernameAttributes": [
+          "email"
+        ],
+        "AutoVerifyAttributes": [
+          "email"
+        ],
+        "Schema": [
+          {
+            "Name": "custom:tenantId",
+            "AttributeDataType": "String",
+            "Mutable": false,
+            "Required": true
+          }
+        ],
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": true
+        },
+        "Policies": {
+          "PasswordPolicy": {
+            "MinimumLength": 8,
+            "RequireLowercase": true,
+            "RequireNumbers": true,
+            "RequireSymbols": true,
+            "RequireUppercase": true
+          }
+        }
+      }
+    },
+    "CognitoAuthorizer": {
+      "Type": "AWS::ApiGateway::Authorizer",
+      "Properties": {
+        "Name": "CognitoAuthorizer",
+        "Type": "COGNITO_USER_POOLS",
+        "ProviderARNs": [
+          {
+            "Fn::GetAtt": [
+              "CognitoUserPool",
+              "Arn"
+            ]
+          }
+        ],
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "IdentitySource": "method.request.header.Authorization"
+      }
+    },
+    "ApiGatewayLoggingRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+        ]
+      }
+    },
+    "ApiGatewayAccount": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "ApiGatewayLoggingRole",
+            "Arn"
+          ]
+        }
+      }
+    },
     "TenantsTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
@@ -1501,6 +1964,33 @@
           }
         ]
       }
+    },
+    "ApiGatewayStage": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "StageName": "dev",
+        "AccessLogSetting": {
+          "DestinationArn": {
+            "Fn::GetAtt": [
+              "ApiGatewayLogGroup",
+              "Arn"
+            ]
+          },
+          "Format": "{\n  \"requestId\": \"$context.requestId\",\n  \"ip\": \"$context.identity.sourceIp\",\n  \"caller\": \"$context.identity.caller\",\n  \"user\": \"$context.identity.user\",\n  \"requestTime\": \"$context.requestTime\",\n  \"httpMethod\": \"$context.httpMethod\",\n  \"resourcePath\": \"$context.resourcePath\",\n  \"status\": \"$context.status\",\n  \"protocol\": \"$context.protocol\",\n  \"responseLength\": \"$context.responseLength\",\n  \"error.message\": \"$context.error.message\",\n  \"error.messageString\": \"$context.error.messageString\",\n  \"authorizer.error\": \"$context.authorizer.error\"\n}\n"
+        },
+        "MethodSettings": [
+          {
+            "ResourcePath": "/*",
+            "HttpMethod": "*",
+            "LoggingLevel": "INFO",
+            "DataTraceEnabled": true,
+            "MetricsEnabled": true
+          }
+        ]
+      }
     }
   },
   "Outputs": {
@@ -1515,7 +2005,7 @@
     "GetTenantUsersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetTenantUsersLambdaVersionsXXp2dE1OC7UPx0vakm6SlsziupQdNmy7nqWoxLyIxQ"
+        "Ref": "GetTenantUsersLambdaVersionUw2X82osD0u2nmjMy8nfq70Mvsn0y37Hy60bPJbUQ"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-GetTenantUsersLambdaFunctionQualifiedArn"
@@ -1524,7 +2014,7 @@
     "CreateTenantUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateTenantUserLambdaVersionohnsEMTGG55budzUrvNVYjUcL5IiYiONRmpPMpT7g"
+        "Ref": "CreateTenantUserLambdaVersionSbCwPW0y4RyP3WkgWrrtm9ZsMLcjReTCf3fS0oACI"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-CreateTenantUserLambdaFunctionQualifiedArn"
@@ -1533,7 +2023,7 @@
     "UpdateTenantUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateTenantUserLambdaVersionETyPse17tQcv4OXEomvs6dwdTI64rMwKCaDYj6dI"
+        "Ref": "UpdateTenantUserLambdaVersionAyu8oiFBtMUBFCHqi4jqthmvOQvNqFHxRYg39PV0VM"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-UpdateTenantUserLambdaFunctionQualifiedArn"
@@ -1542,7 +2032,7 @@
     "DeleteTenantUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteTenantUserLambdaVersionNj92x8QzEzTwMEMK0rDGE0wAWVKlbgmLQWIJnAUe1LY"
+        "Ref": "DeleteTenantUserLambdaVersionQTJ5JdVaz9qc3cQn0bQ3YGYuwlslUAzR9f02YiB6wwQ"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-DeleteTenantUserLambdaFunctionQualifiedArn"
@@ -1551,7 +2041,7 @@
     "StartTenantOnboardingLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "StartTenantOnboardingLambdaVersionuCQoYzlxs7hjzvXoCRsGQSpkXnli82i65U8IMSgGxM4"
+        "Ref": "StartTenantOnboardingLambdaVersionKyfDkTsH8BNuI1sjX3BfMKcUDGW3ZlrAUZRDcST15E"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-StartTenantOnboardingLambdaFunctionQualifiedArn"
@@ -1560,7 +2050,7 @@
     "CheckTCAcceptanceLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CheckTCAcceptanceLambdaVersionUScwj5TCtFxoBWhK8DYwBemHxGImJEtfXtY7pksE"
+        "Ref": "CheckTCAcceptanceLambdaVersionGQlp2YTxfYuk0EFb7Gd0Re0O6xfMv0m3dxA9LHZlqc"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-CheckTCAcceptanceLambdaFunctionQualifiedArn"
@@ -1569,7 +2059,7 @@
     "RecordTCAcceptanceLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RecordTCAcceptanceLambdaVersionRQt3LQacedNlRi2kMXOs1TC6vIeo9bof6wnqfdQqrLg"
+        "Ref": "RecordTCAcceptanceLambdaVersionf5oUbKRoNOPvuYC4EIjCPB2qWYqWtQlCEMl75n0d4"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-RecordTCAcceptanceLambdaFunctionQualifiedArn"
@@ -1578,7 +2068,7 @@
     "PaymentWebhookLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PaymentWebhookLambdaVersionAoG0DMvUbKAdVigMI0IgQ5Dr76JsVHXZSRbtGeL8xY"
+        "Ref": "PaymentWebhookLambdaVersionQ46jglUFr7W7o8QhK6rGpZX6dF3465Ub7nSyEIpyfQ"
       },
       "Export": {
         "Name": "sls-administrador-technoagentes-dev-PaymentWebhookLambdaFunctionQualifiedArn"
