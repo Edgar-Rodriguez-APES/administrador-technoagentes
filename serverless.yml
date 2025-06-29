@@ -310,8 +310,7 @@ resources:
             DataTraceEnabled: true
             MetricsEnabled: true
 
-resources:
-  Resources:
+    # API Gateway Deployment
     ApiGatewayDeployment:
       Type: AWS::ApiGateway::Deployment
       Properties:
