@@ -152,6 +152,14 @@ functions:
           path: webhooks/payment
           method: post
           cors: true
+
+  getPublicPlans:
+    handler: src/api/public-plans-handler.handler
+    events:
+      - http:
+          path: public/plans
+          method: get
+          cors: true
 resources:
   Resources:
     # Cognito User Pool

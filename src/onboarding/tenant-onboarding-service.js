@@ -29,48 +29,138 @@ class TenantOnboardingService {
   /**
    * Start the tenant onboarding process
    * @param {Object} tenantData - Tenant information
+   * @param {string} planId - Selected plan ID
    * @param {string} paymentToken - Payment token from the payment provider
    * @returns {Promise<Object>} - Onboarding process information
    */
-  async startOnboarding(tenantData, paymentToken) {
+  async startOnboarding(tenantData, planId, paymentToken) {
     try {
+      // TAREA 1: Verificar si ya existe un tenant con el mismo nombre
+      const existingTenant = await this.checkDuplicateTenant(tenantData.name);
+      if (existingTenant) {
+        const error = new Error('A tenant with this company name already exists');
+        error.statusCode = 409;
+        throw error;
+      }
+
       // Generate a unique tenant ID
       const tenantId = uuidv4();
       
-      // Start the Step Functions state machine for onboarding
-      const params = {
-        stateMachineArn: this.onboardingStateMachineArn,
-        name: `tenant-onboarding-${tenantId}-${Date.now()}`,
-        input: JSON.stringify({
-          tenantId,
-          tenantName: tenantData.name,
-          tenantEmail: tenantData.email,
-          tenantPlan: tenantData.plan || 'BASIC',
-          paymentToken,
-          address: tenantData.address,
-          phone: tenantData.phone,
-          metadata: tenantData.metadata || {}
-        })
+      // TAREA 2: Integrar flujo de facturación
+      // a. Crear cliente en Treli
+      const customerData = {
+        email: tenantData.email,
+        name: tenantData.name,
+        tenantId,
+        paymentToken
       };
       
-      const result = await this.stepFunctions.startExecution(params).promise();
+      const paymentInfo = await this.paymentService.createCustomer(customerData);
+      
+      // b. Crear suscripción en Treli
+      const subscription = await this.paymentService.createSubscription(
+        paymentInfo.customerId, 
+        planId
+      );
+      
+      // Solo continuar si el pago fue exitoso
+      if (!subscription || subscription.status === 'incomplete') {
+        throw new Error('Payment failed or incomplete. Please check your payment method.');
+      }
+      
+      // Crear tenant record en DynamoDB
+      const tenant = await this.dynamoDBService.createTenant({
+        tenantId,
+        name: tenantData.name,
+        email: tenantData.email,
+        plan: planId,
+        status: 'ACTIVE',
+        address: tenantData.address,
+        phone: tenantData.phone,
+        paymentInfo: {
+          customerId: paymentInfo.customerId,
+          subscriptionId: subscription.id,
+          plan: planId,
+          status: subscription.status
+        },
+        metadata: tenantData.metadata || {}
+      });
+      
+      // Crear grupos de Cognito
+      await this.cognitoService.createTenantGroups(tenantId);
+      
+      // Crear superusuario
+      const superUser = await this.cognitoService.createTenantSuperUser(
+        tenantData.email,
+        tenantId,
+        tenantData.name
+      );
+      
+      // Crear perfil de usuario en DynamoDB
+      await this.dynamoDBService.saveUserProfile(
+        tenantData.email,
+        tenantId,
+        {
+          email: tenantData.email,
+          name: tenantData.metadata?.userName || tenantData.name,
+          role: 'Admin',
+          createdAt: new Date().toISOString()
+        }
+      );
       
       return {
         tenantId,
-        executionArn: result.executionArn,
-        startDate: result.startDate,
-        status: 'STARTED'
+        status: 'COMPLETED',
+        tenant,
+        superUser,
+        paymentInfo: {
+          customerId: paymentInfo.customerId,
+          subscriptionId: subscription.id
+        }
       };
     } catch (error) {
       console.error('Error starting tenant onboarding:', error);
+      
+      // Propagar errores con código de estado específico
+      if (error.statusCode) {
+        throw error;
+      }
+      
       throw new Error(`Failed to start tenant onboarding: ${error.message}`);
     }
   }
 
   /**
-   * Create tenant record in DynamoDB
+   * Check if a tenant with the same name already exists
+   * @param {string} tenantName - Name of the tenant to check
+   * @returns {Promise<boolean>} - True if duplicate exists
+   */
+  async checkDuplicateTenant(tenantName) {
+    try {
+      // Buscar tenants activos con el mismo nombre
+      const result = await this.dynamoDBService.listTenants({
+        status: 'ACTIVE',
+        limit: 1
+      });
+      
+      // Verificar si algún tenant tiene el mismo nombre (case-insensitive)
+      const duplicate = result.tenants.find(tenant => 
+        tenant.name.toLowerCase() === tenantName.toLowerCase()
+      );
+      
+      return !!duplicate;
+    } catch (error) {
+      console.error('Error checking duplicate tenant:', error);
+      // En caso de error, permitir continuar para no bloquear el proceso
+      return false;
+    }
+  }
+
+  /**
+   * Create tenant record in DynamoDB (Legacy method for Step Functions)
    * @param {Object} event - Event from Step Functions
    * @returns {Promise<Object>} - Created tenant information
+   * @deprecated Use the integrated startOnboarding method instead
    */
   async createTenantRecord(event) {
     try {

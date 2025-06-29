@@ -71,33 +71,42 @@ class PaymentService {
       
       // If a payment token is provided, attach it to the customer
       if (customerData.paymentToken) {
-        await axios({
-          method: 'post',
-          url: `${this.apiBaseUrl}/customers/${customer.id}/payment_methods`,
-          headers: {
-            'Authorization': `Bearer ${this.apiKey}`,
-            'Content-Type': 'application/json'
-          },
-          data: {
-            payment_method: customerData.paymentToken,
-            set_as_default: true
-          }
-        });
-      }
-      
-      // Create subscription if plan is provided
-      let subscription = null;
-      if (customerData.plan) {
-        subscription = await this.createSubscription(customer.id, customerData.plan);
+        try {
+          await axios({
+            method: 'post',
+            url: `${this.apiBaseUrl}/customers/${customer.id}/payment_methods`,
+            headers: {
+              'Authorization': `Bearer ${this.apiKey}`,
+              'Content-Type': 'application/json'
+            },
+            data: {
+              payment_method: customerData.paymentToken,
+              set_as_default: true
+            }
+          });
+        } catch (paymentError) {
+          console.error('Error attaching payment method:', paymentError);
+          throw new Error('Failed to attach payment method. Please check your payment information.');
+        }
       }
       
       return {
-        customerId: customer.id,
-        subscriptionId: subscription ? subscription.id : null,
-        plan: customerData.plan || null
+        customerId: customer.id
       };
     } catch (error) {
       console.error('Error creating customer:', error);
+      
+      if (error.response) {
+        const statusCode = error.response.status;
+        const errorMessage = error.response.data?.message || error.message;
+        
+        if (statusCode === 400) {
+          throw new Error(`Invalid customer data: ${errorMessage}`);
+        } else if (statusCode === 402) {
+          throw new Error('Payment method declined. Please use a different payment method.');
+        }
+      }
+      
       throw new Error(`Failed to create customer: ${error.message}`);
     }
   }
@@ -128,13 +137,40 @@ class PaymentService {
           items: [
             { price: priceId }
           ],
-          payment_behavior: 'default_incomplete'
+          payment_behavior: 'default_incomplete',
+          expand: ['latest_invoice.payment_intent']
         }
       });
       
-      return subscriptionResponse.data;
+      const subscription = subscriptionResponse.data;
+      
+      // Check if subscription requires additional action
+      if (subscription.status === 'incomplete' && 
+          subscription.latest_invoice?.payment_intent?.status === 'requires_action') {
+        throw new Error('Payment requires additional authentication. Please complete the payment process.');
+      }
+      
+      // Check if payment failed
+      if (subscription.status === 'incomplete' && 
+          subscription.latest_invoice?.payment_intent?.status === 'requires_payment_method') {
+        throw new Error('Payment method was declined. Please use a different payment method.');
+      }
+      
+      return subscription;
     } catch (error) {
       console.error('Error creating subscription:', error);
+      
+      if (error.response) {
+        const statusCode = error.response.status;
+        const errorMessage = error.response.data?.message || error.message;
+        
+        if (statusCode === 402) {
+          throw new Error('Payment failed. Please check your payment method and try again.');
+        } else if (statusCode === 400) {
+          throw new Error(`Invalid subscription data: ${errorMessage}`);
+        }
+      }
+      
       throw new Error(`Failed to create subscription: ${error.message}`);
     }
   }

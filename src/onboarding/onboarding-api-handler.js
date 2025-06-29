@@ -21,12 +21,20 @@ exports.handler = async (event) => {
     const body = JSON.parse(event.body || '{}');
     
     // Extract required fields
-    const { companyName, userEmail, userName, plan, paymentToken, ...additionalFields } = body;
+    const { companyName, userEmail, userName, planId, paymentToken, ...additionalFields } = body;
     
     // Validate required fields
-    if (!companyName || !userEmail) {
+    if (!companyName || !userEmail || !planId || !paymentToken) {
       return formatResponse(400, {
-        message: 'Missing required fields: companyName and userEmail are required'
+        message: 'Missing required fields: companyName, userEmail, planId, and paymentToken are required'
+      });
+    }
+    
+    // Validate planId
+    const validPlans = ['BASIC', 'STANDARD', 'PREMIUM'];
+    if (!validPlans.includes(planId)) {
+      return formatResponse(400, {
+        message: 'Invalid planId. Must be one of: BASIC, STANDARD, PREMIUM'
       });
     }
     
@@ -34,7 +42,6 @@ exports.handler = async (event) => {
     const tenantData = {
       name: companyName,
       email: userEmail, // Used for both tenant email and superuser email
-      plan: plan || 'BASIC',
       address: additionalFields.address,
       phone: additionalFields.phone,
       metadata: {
@@ -43,21 +50,42 @@ exports.handler = async (event) => {
       }
     };
     
-    // Start the onboarding process
-    const result = await onboardingService.startOnboarding(tenantData, paymentToken);
+    // Start the onboarding process with integrated payment flow
+    const result = await onboardingService.startOnboarding(tenantData, planId, paymentToken);
     
     // Return success response
-    return formatResponse(202, {
-      message: 'Onboarding process started.',
+    return formatResponse(201, {
+      message: 'Tenant created successfully.',
       tenantId: result.tenantId,
-      executionArn: result.executionArn
+      status: result.status,
+      paymentInfo: {
+        customerId: result.paymentInfo.customerId,
+        subscriptionId: result.paymentInfo.subscriptionId
+      }
     });
   } catch (error) {
     console.error('Error in onboarding API handler:', error);
     
-    // Return appropriate error response
+    // Handle specific error types
+    if (error.statusCode === 409) {
+      return formatResponse(409, {
+        message: error.message,
+        code: 'DUPLICATE_TENANT'
+      });
+    }
+    
+    // Handle payment-related errors
+    if (error.message.includes('Payment failed') || error.message.includes('payment')) {
+      return formatResponse(402, {
+        message: error.message,
+        code: 'PAYMENT_FAILED'
+      });
+    }
+    
+    // Return generic error response
     return formatResponse(500, {
-      message: `Error starting onboarding process: ${error.message}`
+      message: `Error creating tenant: ${error.message}`,
+      code: 'INTERNAL_ERROR'
     });
   }
 };
@@ -74,7 +102,9 @@ function formatResponse(statusCode, body) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
     },
     body: JSON.stringify(body)
   };
