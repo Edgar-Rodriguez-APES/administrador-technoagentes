@@ -41,7 +41,6 @@ plugins:
 
 package:
   exclude:
-  #  - node_modules/aws-sdk/**
     - '**/*.md'
     - '**/*.txt'
     - deploy-temp/**
@@ -76,13 +75,13 @@ functions:
     handler: src/api/tenant-users-handler.handler
     iamRoleStatementsName: create-user-role
     events:
-    - http:
-        path: tenants/users
-        method: post
-        authorizer:
-          type: COGNITO_USER_POOLS
-          authorizerId: !Ref CognitoAuthorizer
-        cors: true
+      - http:
+          path: tenants/users
+          method: post
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId: !Ref CognitoAuthorizer
+          cors: true
 
   updateTenantUser:
     handler: src/api/tenant-users-handler.handler
@@ -160,6 +159,7 @@ functions:
           path: public/plans
           method: get
           cors: true
+
 resources:
   Resources:
     # Cognito User Pool
@@ -282,27 +282,15 @@ resources:
     # Stage Configuration con Logging
     ApiGatewayStage:
       Type: AWS::ApiGateway::Stage
+      DependsOn:
+        - ApiGatewayDeployment
       Properties:
         RestApiId: !Ref ApiGatewayRestApi
         StageName: ${self:provider.stage}
+        DeploymentId: !Ref ApiGatewayDeployment
         AccessLogSetting:
           DestinationArn: !GetAtt ApiGatewayLogGroup.Arn
-          Format: >
-            {
-              "requestId": "$context.requestId",
-              "ip": "$context.identity.sourceIp",
-              "caller": "$context.identity.caller",
-              "user": "$context.identity.user",
-              "requestTime": "$context.requestTime",
-              "httpMethod": "$context.httpMethod",
-              "resourcePath": "$context.resourcePath",
-              "status": "$context.status",
-              "protocol": "$context.protocol",
-              "responseLength": "$context.responseLength",
-              "error.message": "$context.error.message",
-              "error.messageString": "$context.error.messageString",
-              "authorizer.error": "$context.authorizer.error"
-            }
+          Format: '{"requestId":"$context.requestId","ip":"$context.identity.sourceIp","caller":"$context.identity.caller","user":"$context.identity.user","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","resourcePath":"$context.resourcePath","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength","error.message":"$context.error.message","error.messageString":"$context.error.messageString","authorizer.error":"$context.authorizer.error"}'
         MethodSettings:
           - ResourcePath: "/*"
             HttpMethod: "*"
