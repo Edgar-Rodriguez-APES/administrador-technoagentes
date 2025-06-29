@@ -17,12 +17,10 @@ provider:
     ENVIRONMENT: ${self:provider.stage}
     TENANTS_TABLE: !Ref TenantsTable
     USERS_TABLE: !Ref UsersTable
+  # Esta es la única configuración de logs que necesitamos.
+  # El framework se encargará de crear los roles y permisos necesarios.
   logs:
-    restApi:
-      accessLogging: true
-      executionLogging: true
-      level: INFO
-      fullExecutionData: true
+    restApi: true
 
   iam:
     role:
@@ -197,33 +195,6 @@ resources:
         RestApiId: !Ref ApiGatewayRestApi
         IdentitySource: method.request.header.Authorization
 
-    # CloudWatch Log Group para API Gateway
-    ApiGatewayLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        LogGroupName: !Sub "/aws/apigateway/${self:service}-${self:provider.stage}"
-        RetentionInDays: 30
-
-    # Rol para API Gateway Logging
-    ApiGatewayLoggingRole:
-      Type: AWS::IAM::Role
-      Properties:
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service: apigateway.amazonaws.com
-              Action: sts:AssumeRole
-        ManagedPolicyArns:
-          - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
-
-    # Account Configuration para API Gateway Logging
-    ApiGatewayAccount:
-      Type: AWS::ApiGateway::Account
-      Properties:
-        CloudWatchRoleArn: !GetAtt ApiGatewayLoggingRole.Arn
-
     # DynamoDB Tables
     TenantsTable:
       Type: AWS::DynamoDB::Table
@@ -278,30 +249,3 @@ resources:
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
-
-    # Stage Configuration con Logging
-    ApiGatewayStage:
-      Type: AWS::ApiGateway::Stage
-      DependsOn:
-        - ApiGatewayDeployment
-      Properties:
-        RestApiId: !Ref ApiGatewayRestApi
-        StageName: ${self:provider.stage}
-        DeploymentId: !Ref ApiGatewayDeployment
-        AccessLogSetting:
-          DestinationArn: !GetAtt ApiGatewayLogGroup.Arn
-          Format: '{"requestId":"$context.requestId","ip":"$context.identity.sourceIp","caller":"$context.identity.caller","user":"$context.identity.user","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","resourcePath":"$context.resourcePath","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength","error.message":"$context.error.message","error.messageString":"$context.error.messageString","authorizer.error":"$context.authorizer.error"}'
-        MethodSettings:
-          - ResourcePath: "/*"
-            HttpMethod: "*"
-            LoggingLevel: INFO
-            DataTraceEnabled: true
-            MetricsEnabled: true
-
-    # API Gateway Deployment
-    ApiGatewayDeployment:
-      Type: AWS::ApiGateway::Deployment
-      Properties:
-        RestApiId:
-          Ref: ApiGatewayRestApi
-        Description: "Deployment timestamp: ${timestamp}"

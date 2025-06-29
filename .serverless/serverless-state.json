@@ -296,7 +296,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -332,7 +332,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -368,7 +368,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -404,7 +404,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -440,7 +440,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/onboarding/onboarding-api-handler.handler",
               "Runtime": "nodejs18.x",
@@ -476,7 +476,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -512,7 +512,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -548,7 +548,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/webhook-handler.handler",
               "Runtime": "nodejs18.x",
@@ -584,7 +584,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/administrador-technoagentes.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/administrador-technoagentes.zip"
               },
               "Handler": "src/api/public-plans-handler.handler",
               "Runtime": "nodejs18.x",
@@ -1543,7 +1543,7 @@
               "GetPublicPlansLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1751171973751": {
+          "ApiGatewayDeployment1751172272763": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2014,7 +2014,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z/custom-resources.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z/custom-resources.zip"
               },
               "FunctionName": "administrador-technoagentes-dev-custom-resource-apigw-cw-role",
               "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -2232,7 +2232,7 @@
                     "Arn"
                   ]
                 },
-                "Format": "{\n  \"requestId\": \"$context.requestId\",\n  \"ip\": \"$context.identity.sourceIp\",\n  \"caller\": \"$context.identity.caller\",\n  \"user\": \"$context.identity.user\",\n  \"requestTime\": \"$context.requestTime\",\n  \"httpMethod\": \"$context.httpMethod\",\n  \"resourcePath\": \"$context.resourcePath\",\n  \"status\": \"$context.status\",\n  \"protocol\": \"$context.protocol\",\n  \"responseLength\": \"$context.responseLength\",\n  \"error.message\": \"$context.error.message\",\n  \"error.messageString\": \"$context.error.messageString\",\n  \"authorizer.error\": \"$context.authorizer.error\"\n}\n"
+                "Format": "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"caller\":\"$context.identity.caller\",\"user\":\"$context.identity.user\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.resourcePath\",\"status\":\"$context.status\",\"protocol\":\"$context.protocol\",\"responseLength\":\"$context.responseLength\",\"error.message\":\"$context.error.message\",\"error.messageString\":\"$context.error.messageString\",\"authorizer.error\":\"$context.authorizer.error\"}"
               },
               "MethodSettings": [
                 {
@@ -3083,7 +3083,7 @@
                   "Arn"
                 ]
               },
-              "Format": "{\n  \"requestId\": \"$context.requestId\",\n  \"ip\": \"$context.identity.sourceIp\",\n  \"caller\": \"$context.identity.caller\",\n  \"user\": \"$context.identity.user\",\n  \"requestTime\": \"$context.requestTime\",\n  \"httpMethod\": \"$context.httpMethod\",\n  \"resourcePath\": \"$context.resourcePath\",\n  \"status\": \"$context.status\",\n  \"protocol\": \"$context.protocol\",\n  \"responseLength\": \"$context.responseLength\",\n  \"error.message\": \"$context.error.message\",\n  \"error.messageString\": \"$context.error.messageString\",\n  \"authorizer.error\": \"$context.authorizer.error\"\n}\n"
+              "Format": "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"caller\":\"$context.identity.caller\",\"user\":\"$context.identity.user\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.resourcePath\",\"status\":\"$context.status\",\"protocol\":\"$context.protocol\",\"responseLength\":\"$context.responseLength\",\"error.message\":\"$context.error.message\",\"error.messageString\":\"$context.error.messageString\",\"authorizer.error\":\"$context.authorizer.error\"}"
             },
             "MethodSettings": [
               {
@@ -3142,7 +3142,7 @@
         "excludeDevDependencies": true,
         "artifactsS3KeyDirname": "serverless/administrador-technoagentes/dev/code-artifacts",
         "artifact": "C:\\Disco local\\MisProyectos\\Administrador Technoagentes\\.serverless\\administrador-technoagentes.zip",
-        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z"
+        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -3156,7 +3156,7 @@
     "artifact": "C:\\Disco local\\MisProyectos\\Administrador Technoagentes\\.serverless\\administrador-technoagentes.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751172049183-2025-06-29T04:40:49.183Z",
+    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751172349744-2025-06-29T04:45:49.744Z",
     "artifact": "administrador-technoagentes.zip"
   }
 }
