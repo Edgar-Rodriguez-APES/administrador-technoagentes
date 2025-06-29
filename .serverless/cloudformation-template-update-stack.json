@@ -252,7 +252,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -288,7 +288,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -324,7 +324,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -360,7 +360,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tenant-users-handler.handler",
         "Runtime": "nodejs18.x",
@@ -396,7 +396,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/onboarding/onboarding-api-handler.handler",
         "Runtime": "nodejs18.x",
@@ -432,7 +432,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tc-acceptance-handler.handler",
         "Runtime": "nodejs18.x",
@@ -468,7 +468,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/tc-acceptance-handler.handler",
         "Runtime": "nodejs18.x",
@@ -504,7 +504,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/administrador-technoagentes.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/administrador-technoagentes.zip"
         },
         "Handler": "src/api/webhook-handler.handler",
         "Runtime": "nodejs18.x",
@@ -1335,7 +1335,7 @@
         "PaymentWebhookLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1751154778173": {
+    "ApiGatewayDeployment1751155198754": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1767,7 +1767,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/administrador-technoagentes/dev/1751154853410-2025-06-28T23:54:13.410Z/custom-resources.zip"
+          "S3Key": "serverless/administrador-technoagentes/dev/1751155274120-2025-06-29T00:01:14.120Z/custom-resources.zip"
         },
         "FunctionName": "administrador-technoagentes-dev-custom-resource-apigw-cw-role",
         "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -1990,6 +1990,15 @@
             "MetricsEnabled": true
           }
         ]
+      }
+    },
+    "ApiGatewayDeployment${sls:instanceId}": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "StageName": "dev"
       }
     }
   },
