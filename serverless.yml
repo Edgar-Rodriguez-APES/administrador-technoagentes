@@ -19,8 +19,8 @@ provider:
     USERS_TABLE: !Ref UsersTable
   # Esta es la única configuración de logs que necesitamos.
   # El framework se encargará de crear los roles y permisos necesarios.
-  logs:
-    restApi: true
+  # logs:
+  #   restApi: true
 
   iam:
     role:
@@ -38,9 +38,15 @@ plugins:
   - serverless-iam-roles-per-function
 
 package:
+  individually: true
   exclude:
+    - node_modules/**
+    - '!node_modules/aws-sdk/**'
+    - '!node_modules/uuid/**'
+    - '!node_modules/axios/**'
     - '**/*.md'
     - '**/*.txt'
+    - '**/*.map'
     - deploy-temp/**
     - docs/**
     - tests/**
@@ -48,12 +54,7 @@ package:
     - simple-infra/**
     - dist/**
     - undefined/**
-    - '**/amplify*.json'
-    - '**/api-*.json'
-    - '**/deploy-*.ps1'
-    - '**/deploy-*.sh'
-    - '**/*.zip'
-  excludeDevDependencies: true
+  excludeDevDependencies: false
   
 functions:
   # Tenant Users API
