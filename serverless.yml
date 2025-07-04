@@ -118,6 +118,15 @@ functions:
             authorizerId: !Ref CognitoAuthorizer
           cors: true
 
+  publicTenantOnboarding:
+    handler: src/onboarding/onboarding-api-handler.handler
+    iamRoleStatementsName: public-onboarding-role
+    events:
+      - http:
+          path: public/onboarding
+          method: post
+          cors: true
+
   checkTCAcceptance:
     handler: src/api/tc-acceptance-handler.handler
     iamRoleStatementsName: check-tc-role

@@ -1,0 +1,47 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "PublicOnboardingApiGatewayMethod": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "RestApiId": {"Ref": "ApiGatewayRestApi"},
+        "ResourceId": {"Ref": "PublicOnboardingApiGatewayResource"},
+        "HttpMethod": "POST",
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "Type": "AWS_PROXY",
+          "IntegrationHttpMethod": "POST",
+          "Uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:administrador-technoagentes-dev-startTenantOnboarding/invocations"
+          }
+        },
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            }
+          }
+        ]
+      }
+    },
+    "PublicOnboardingApiGatewayResource": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "ApiGatewayRestApi"},
+        "ParentId": {"Ref": "PublicApiGatewayResource"},
+        "PathPart": "onboarding"
+      }
+    },
+    "PublicApiGatewayResource": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "ApiGatewayRestApi"},
+        "ParentId": {"Fn::GetAtt": ["ApiGatewayRestApi", "RootResourceId"]},
+        "PathPart": "public"
+      }
+    }
+  }
+}
