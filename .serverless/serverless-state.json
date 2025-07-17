@@ -228,7 +228,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/getTenantUsers.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/getTenantUsers.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -262,7 +262,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/createTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/createTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -296,7 +296,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/updateTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/updateTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -330,7 +330,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/deleteTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/deleteTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -364,7 +364,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/startTenantOnboarding.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/startTenantOnboarding.zip"
               },
               "Handler": "src/onboarding/onboarding-api-handler.handler",
               "Runtime": "nodejs18.x",
@@ -398,7 +398,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/publicTenantOnboarding.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/publicTenantOnboarding.zip"
               },
               "Handler": "src/onboarding/onboarding-api-handler.handler",
               "Runtime": "nodejs18.x",
@@ -432,7 +432,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/checkTCAcceptance.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/checkTCAcceptance.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -466,7 +466,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/recordTCAcceptance.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/recordTCAcceptance.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -500,7 +500,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/paymentWebhook.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/paymentWebhook.zip"
               },
               "Handler": "src/api/webhook-handler.handler",
               "Runtime": "nodejs18.x",
@@ -534,7 +534,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "mi-bucket-personalizado-dev",
-                "S3Key": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z/getPublicPlans.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z/getPublicPlans.zip"
               },
               "Handler": "src/api/public-plans-handler.handler",
               "Runtime": "nodejs18.x",
@@ -563,104 +563,104 @@
               "GetPublicPlansLogGroup"
             ]
           },
-          "GetTenantUsersLambdaVersionWT3CjAlu4qDASyRS2K3C3cDObAtXrs1Kl0DMSVK13c": {
+          "GetTenantUsersLambdaVersionuPcmdHRzi0XPTiNRa3v7rRpPYXHWrUHAiavultXq61U": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetTenantUsersLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
-          "RecordTCAcceptanceLambdaVersionyzIBfEP3KwaOqwZpKqRcNO5X1wm5joudqAaPchoLNH0": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "RecordTCAcceptanceLambdaFunction"
-              },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
-            }
-          },
-          "DeleteTenantUserLambdaVersion65PQ6D3wjgmOqihbSItwvv4BplFBjOnDOuT1Gnyu4I": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "DeleteTenantUserLambdaFunction"
-              },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
-            }
-          },
-          "CheckTCAcceptanceLambdaVersion5w5EoJGRukh2om6VDJZduVSm8z20YUVmnXHUoOmefw": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CheckTCAcceptanceLambdaFunction"
-              },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
-            }
-          },
-          "CreateTenantUserLambdaVersionj8GhwYlpybbD0ZkWiwyh7IZMiWccbgqbee0jv0gdjAQ": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreateTenantUserLambdaFunction"
-              },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
-            }
-          },
-          "StartTenantOnboardingLambdaVersionXcDEbNQ6DXDnwmy4Cil9bNU8F7BVWdaKE9GT3IcKyw": {
+          "StartTenantOnboardingLambdaVersionwoq8kacAmthSsFZlmBFNkT96DE8o5tnAb6k1nU9PVw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "StartTenantOnboardingLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
-          "PublicTenantOnboardingLambdaVersion3iVJ7cSRsvJlNHkxbSgckPypnKi306CFrbwskL1ZQ": {
+          "CreateTenantUserLambdaVersionuGoquQdKcEogtQ5O8wYggFahKO1XFTNwlglhY9FRNhY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "PublicTenantOnboardingLambdaFunction"
+                "Ref": "CreateTenantUserLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
-          "UpdateTenantUserLambdaVersionfS1IixmZ2nBzY5hP27TjfeUto4W2AwCWlODQS8rYR58": {
+          "UpdateTenantUserLambdaVersionYA7q41Db2LW64M8aZMZTNTAiBd3cWxIBGWr67hMtgqo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateTenantUserLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
-          "PaymentWebhookLambdaVersioncLzd5Phiugxllzv7ejWKrstdwAIUUhQdIHwedOXQk": {
+          "CheckTCAcceptanceLambdaVersionBpMBlDMQuaNxrBCT7M7DQG8pNHaxsXvtMHo5TuLanw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "PaymentWebhookLambdaFunction"
+                "Ref": "CheckTCAcceptanceLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
-          "GetPublicPlansLambdaVersionS6hNxQrH1cgylGXhnXXmeWm7d5iVHofOD1F3x87m5Q": {
+          "DeleteTenantUserLambdaVersionDPgnB3C7Qo0ec5wEOfhA4YB1pEockSi2w8iyBkIknM": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteTenantUserLambdaFunction"
+              },
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
+            }
+          },
+          "PublicTenantOnboardingLambdaVersionaXcNjExaTePnwZkwmjqpHxrQG2AhS8H2Zsh45T11ME": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "PublicTenantOnboardingLambdaFunction"
+              },
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
+            }
+          },
+          "RecordTCAcceptanceLambdaVersionT4RYZAYI2yhg4rlXtOfq0ZSpdZOhedGCiNEFOObFDF4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "RecordTCAcceptanceLambdaFunction"
+              },
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
+            }
+          },
+          "GetPublicPlansLambdaVersionDx2DHlsqyiIgHVH5z3vMlNv8BdFh7P5dCddj6bBmcU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetPublicPlansLambdaFunction"
               },
-              "CodeSha256": "QErU7Yl7nQOJAIDr4P8ZtLx6Ul7C02GI1VIOsDcVdqQ="
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
+            }
+          },
+          "PaymentWebhookLambdaVersion9LIgiNbFYASmslo64u86PYcD1SGlp3Axp0q7rLjnE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "PaymentWebhookLambdaFunction"
+              },
+              "CodeSha256": "MRp3Y/T75REjr/fxr6SjyqxaoNr1tnNDl08bJlsbmuA="
             }
           },
           "ApiGatewayRestApi": {
@@ -1620,7 +1620,7 @@
               "GetPublicPlansLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1752712871940": {
+          "ApiGatewayDeployment1752714549531": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2178,91 +2178,91 @@
           "GetTenantUsersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetTenantUsersLambdaVersionWT3CjAlu4qDASyRS2K3C3cDObAtXrs1Kl0DMSVK13c"
+              "Ref": "GetTenantUsersLambdaVersionuPcmdHRzi0XPTiNRa3v7rRpPYXHWrUHAiavultXq61U"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-GetTenantUsersLambdaFunctionQualifiedArn"
             }
           },
-          "RecordTCAcceptanceLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "RecordTCAcceptanceLambdaVersionyzIBfEP3KwaOqwZpKqRcNO5X1wm5joudqAaPchoLNH0"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-RecordTCAcceptanceLambdaFunctionQualifiedArn"
-            }
-          },
-          "DeleteTenantUserLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "DeleteTenantUserLambdaVersion65PQ6D3wjgmOqihbSItwvv4BplFBjOnDOuT1Gnyu4I"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-DeleteTenantUserLambdaFunctionQualifiedArn"
-            }
-          },
-          "CheckTCAcceptanceLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CheckTCAcceptanceLambdaVersion5w5EoJGRukh2om6VDJZduVSm8z20YUVmnXHUoOmefw"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-CheckTCAcceptanceLambdaFunctionQualifiedArn"
-            }
-          },
-          "CreateTenantUserLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateTenantUserLambdaVersionj8GhwYlpybbD0ZkWiwyh7IZMiWccbgqbee0jv0gdjAQ"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-CreateTenantUserLambdaFunctionQualifiedArn"
-            }
-          },
           "StartTenantOnboardingLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "StartTenantOnboardingLambdaVersionXcDEbNQ6DXDnwmy4Cil9bNU8F7BVWdaKE9GT3IcKyw"
+              "Ref": "StartTenantOnboardingLambdaVersionwoq8kacAmthSsFZlmBFNkT96DE8o5tnAb6k1nU9PVw"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-StartTenantOnboardingLambdaFunctionQualifiedArn"
             }
           },
-          "PublicTenantOnboardingLambdaFunctionQualifiedArn": {
+          "CreateTenantUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PublicTenantOnboardingLambdaVersion3iVJ7cSRsvJlNHkxbSgckPypnKi306CFrbwskL1ZQ"
+              "Ref": "CreateTenantUserLambdaVersionuGoquQdKcEogtQ5O8wYggFahKO1XFTNwlglhY9FRNhY"
             },
             "Export": {
-              "Name": "sls-administrador-technoagentes-dev-PublicTenantOnboardingLambdaFunctionQualifiedArn"
+              "Name": "sls-administrador-technoagentes-dev-CreateTenantUserLambdaFunctionQualifiedArn"
             }
           },
           "UpdateTenantUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateTenantUserLambdaVersionfS1IixmZ2nBzY5hP27TjfeUto4W2AwCWlODQS8rYR58"
+              "Ref": "UpdateTenantUserLambdaVersionYA7q41Db2LW64M8aZMZTNTAiBd3cWxIBGWr67hMtgqo"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-UpdateTenantUserLambdaFunctionQualifiedArn"
             }
           },
-          "PaymentWebhookLambdaFunctionQualifiedArn": {
+          "CheckTCAcceptanceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PaymentWebhookLambdaVersioncLzd5Phiugxllzv7ejWKrstdwAIUUhQdIHwedOXQk"
+              "Ref": "CheckTCAcceptanceLambdaVersionBpMBlDMQuaNxrBCT7M7DQG8pNHaxsXvtMHo5TuLanw"
             },
             "Export": {
-              "Name": "sls-administrador-technoagentes-dev-PaymentWebhookLambdaFunctionQualifiedArn"
+              "Name": "sls-administrador-technoagentes-dev-CheckTCAcceptanceLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteTenantUserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteTenantUserLambdaVersionDPgnB3C7Qo0ec5wEOfhA4YB1pEockSi2w8iyBkIknM"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-DeleteTenantUserLambdaFunctionQualifiedArn"
+            }
+          },
+          "PublicTenantOnboardingLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "PublicTenantOnboardingLambdaVersionaXcNjExaTePnwZkwmjqpHxrQG2AhS8H2Zsh45T11ME"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-PublicTenantOnboardingLambdaFunctionQualifiedArn"
+            }
+          },
+          "RecordTCAcceptanceLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "RecordTCAcceptanceLambdaVersionT4RYZAYI2yhg4rlXtOfq0ZSpdZOhedGCiNEFOObFDF4"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-RecordTCAcceptanceLambdaFunctionQualifiedArn"
             }
           },
           "GetPublicPlansLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetPublicPlansLambdaVersionS6hNxQrH1cgylGXhnXXmeWm7d5iVHofOD1F3x87m5Q"
+              "Ref": "GetPublicPlansLambdaVersionDx2DHlsqyiIgHVH5z3vMlNv8BdFh7P5dCddj6bBmcU"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-GetPublicPlansLambdaFunctionQualifiedArn"
+            }
+          },
+          "PaymentWebhookLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "PaymentWebhookLambdaVersion9LIgiNbFYASmslo64u86PYcD1SGlp3Axp0q7rLjnE"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-PaymentWebhookLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -2352,7 +2352,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetTenantUsersLambdaVersionWT3CjAlu4qDASyRS2K3C3cDObAtXrs1Kl0DMSVK13c"
+        "versionLogicalId": "GetTenantUsersLambdaVersionuPcmdHRzi0XPTiNRa3v7rRpPYXHWrUHAiavultXq61U"
       },
       "createTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2399,7 +2399,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CreateTenantUserLambdaVersionj8GhwYlpybbD0ZkWiwyh7IZMiWccbgqbee0jv0gdjAQ"
+        "versionLogicalId": "CreateTenantUserLambdaVersionuGoquQdKcEogtQ5O8wYggFahKO1XFTNwlglhY9FRNhY"
       },
       "updateTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2446,7 +2446,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "UpdateTenantUserLambdaVersionfS1IixmZ2nBzY5hP27TjfeUto4W2AwCWlODQS8rYR58"
+        "versionLogicalId": "UpdateTenantUserLambdaVersionYA7q41Db2LW64M8aZMZTNTAiBd3cWxIBGWr67hMtgqo"
       },
       "deleteTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2493,7 +2493,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "DeleteTenantUserLambdaVersion65PQ6D3wjgmOqihbSItwvv4BplFBjOnDOuT1Gnyu4I"
+        "versionLogicalId": "DeleteTenantUserLambdaVersionDPgnB3C7Qo0ec5wEOfhA4YB1pEockSi2w8iyBkIknM"
       },
       "startTenantOnboarding": {
         "handler": "src/onboarding/onboarding-api-handler.handler",
@@ -2540,7 +2540,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "StartTenantOnboardingLambdaVersionXcDEbNQ6DXDnwmy4Cil9bNU8F7BVWdaKE9GT3IcKyw"
+        "versionLogicalId": "StartTenantOnboardingLambdaVersionwoq8kacAmthSsFZlmBFNkT96DE8o5tnAb6k1nU9PVw"
       },
       "publicTenantOnboarding": {
         "handler": "src/onboarding/onboarding-api-handler.handler",
@@ -2577,7 +2577,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PublicTenantOnboardingLambdaVersion3iVJ7cSRsvJlNHkxbSgckPypnKi306CFrbwskL1ZQ"
+        "versionLogicalId": "PublicTenantOnboardingLambdaVersionaXcNjExaTePnwZkwmjqpHxrQG2AhS8H2Zsh45T11ME"
       },
       "checkTCAcceptance": {
         "handler": "src/api/tc-acceptance-handler.handler",
@@ -2624,7 +2624,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CheckTCAcceptanceLambdaVersion5w5EoJGRukh2om6VDJZduVSm8z20YUVmnXHUoOmefw"
+        "versionLogicalId": "CheckTCAcceptanceLambdaVersionBpMBlDMQuaNxrBCT7M7DQG8pNHaxsXvtMHo5TuLanw"
       },
       "recordTCAcceptance": {
         "handler": "src/api/tc-acceptance-handler.handler",
@@ -2671,7 +2671,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "RecordTCAcceptanceLambdaVersionyzIBfEP3KwaOqwZpKqRcNO5X1wm5joudqAaPchoLNH0"
+        "versionLogicalId": "RecordTCAcceptanceLambdaVersionT4RYZAYI2yhg4rlXtOfq0ZSpdZOhedGCiNEFOObFDF4"
       },
       "paymentWebhook": {
         "handler": "src/api/webhook-handler.handler",
@@ -2708,7 +2708,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PaymentWebhookLambdaVersioncLzd5Phiugxllzv7ejWKrstdwAIUUhQdIHwedOXQk"
+        "versionLogicalId": "PaymentWebhookLambdaVersion9LIgiNbFYASmslo64u86PYcD1SGlp3Axp0q7rLjnE"
       },
       "getPublicPlans": {
         "handler": "src/api/public-plans-handler.handler",
@@ -2744,7 +2744,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetPublicPlansLambdaVersionS6hNxQrH1cgylGXhnXXmeWm7d5iVHofOD1F3x87m5Q"
+        "versionLogicalId": "GetPublicPlansLambdaVersionDx2DHlsqyiIgHVH5z3vMlNv8BdFh7P5dCddj6bBmcU"
       }
     },
     "resources": {
@@ -2936,7 +2936,7 @@
         "excludeDevDependencies": false,
         "artifactsS3KeyDirname": "serverless/administrador-technoagentes/dev/code-artifacts",
         "deploymentBucket": "mi-bucket-personalizado-dev",
-        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z"
+        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -2950,7 +2950,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752712946753-2025-07-17T00:42:26.753Z",
+    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752714586647-2025-07-17T01:09:46.647Z",
     "artifact": ""
   }
 }
