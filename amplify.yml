@@ -24,7 +24,7 @@ applications:
           - .next/cache/**/*
     environment:
       variables:
-        NEXT_PUBLIC_API_URL: 'https://z3egsgkq28.execute-api.us-east-1.amazonaws.com/dev'
+        NEXT_PUBLIC_API_URL: 'https://6vjt915sfj.execute-api.us-west-2.amazonaws.com/dev'
         NEXT_PUBLIC_COGNITO_CLIENT_ID: ''
         NEXT_PUBLIC_COGNITO_USER_POOL_ID: 'us-east-1_XN9cNV18Z	us-east-1_lJikpz0Bu'
         NEXT_PUBLIC_APP_NAME: 'Administrador Technoagentes'
