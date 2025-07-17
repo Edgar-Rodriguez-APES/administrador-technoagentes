@@ -5,5 +5,9 @@
   "main": "enable-cors.js",
   "dependencies": {
     "aws-sdk": "^2.1450.0"
+  },
+  "devDependencies": {
+    "serverless": "^3.40.0",
+    "serverless-iam-roles-per-function": "^3.2.0"
   }
 }

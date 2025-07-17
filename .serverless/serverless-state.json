@@ -176,6 +176,12 @@
               "LogGroupName": "/aws/lambda/administrador-technoagentes-dev-startTenantOnboarding"
             }
           },
+          "PublicTenantOnboardingLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/administrador-technoagentes-dev-publicTenantOnboarding"
+            }
+          },
           "CheckTCAcceptanceLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -288,7 +294,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/getTenantUsers.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/getTenantUsers.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -324,7 +330,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/createTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/createTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -360,7 +366,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/updateTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/updateTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -396,7 +402,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/deleteTenantUser.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/deleteTenantUser.zip"
               },
               "Handler": "src/api/tenant-users-handler.handler",
               "Runtime": "nodejs18.x",
@@ -432,7 +438,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/startTenantOnboarding.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/startTenantOnboarding.zip"
               },
               "Handler": "src/onboarding/onboarding-api-handler.handler",
               "Runtime": "nodejs18.x",
@@ -461,6 +467,42 @@
               "StartTenantOnboardingLogGroup"
             ]
           },
+          "PublicTenantOnboardingLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/publicTenantOnboarding.zip"
+              },
+              "Handler": "src/onboarding/onboarding-api-handler.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "administrador-technoagentes-dev-publicTenantOnboarding",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "ENVIRONMENT": "dev",
+                  "TENANTS_TABLE": {
+                    "$ref": "$[\"service\"][\"provider\"][\"environment\"][\"TENANTS_TABLE\"]"
+                  },
+                  "USERS_TABLE": {
+                    "$ref": "$[\"service\"][\"provider\"][\"environment\"][\"USERS_TABLE\"]"
+                  }
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "PublicTenantOnboardingLogGroup"
+            ]
+          },
           "CheckTCAcceptanceLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -468,7 +510,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/checkTCAcceptance.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/checkTCAcceptance.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -504,7 +546,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/recordTCAcceptance.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/recordTCAcceptance.zip"
               },
               "Handler": "src/api/tc-acceptance-handler.handler",
               "Runtime": "nodejs18.x",
@@ -540,7 +582,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/paymentWebhook.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/paymentWebhook.zip"
               },
               "Handler": "src/api/webhook-handler.handler",
               "Runtime": "nodejs18.x",
@@ -576,7 +618,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z/getPublicPlans.zip"
+                "S3Key": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z/getPublicPlans.zip"
               },
               "Handler": "src/api/public-plans-handler.handler",
               "Runtime": "nodejs18.x",
@@ -605,94 +647,104 @@
               "GetPublicPlansLogGroup"
             ]
           },
-          "CheckTCAcceptanceLambdaVersionWP1iPpsZBj5jKoLKEuCgeL80tXES7JxdZ2JvfzZgqM": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CheckTCAcceptanceLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "CreateTenantUserLambdaVersionS16GohCwKkhHqBBY1yr9NUDnFiN6nl50bKGtKweL00": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreateTenantUserLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "GetTenantUsersLambdaVersionBdsPKGFaz714RMqcduZIUPR2s3IExozSWd21Gsb0wAE": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetTenantUsersLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "StartTenantOnboardingLambdaVersion2ezgM6685Vu4o87INnabYBkpl6STNOd0qiFYqh1zA": {
+          "StartTenantOnboardingLambdaVersioneLnsQXlUQk0BXLDBwL5rNpoRjn0ryRCeiYtclbviUKU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "StartTenantOnboardingLambdaFunction"
               },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
             }
           },
-          "UpdateTenantUserLambdaVersionJGdDDnHwISgX4PCU4cpqUE2BC9utG2eYyOFgcP4Nk": {
+          "GetTenantUsersLambdaVersion4Q1YCXj7TBi9S0Ft7uyh5QOSv9RHFXn0TrKwtElPFQ": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetTenantUsersLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "UpdateTenantUserLambdaVersion09N45SY1e88LbBvZe7YoPqepzBfxkDHoFAt4WcNW1E": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateTenantUserLambdaFunction"
               },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
             }
           },
-          "RecordTCAcceptanceLambdaVersionSfLUajMfa3Pg4b8nQgUg34PyUaywxAV5sJb2yS1Gs": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "RecordTCAcceptanceLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "GetPublicPlansLambdaVersionwGwq1a1KmLpPb0JsGiRWyZkrkfmnIKBOyKUGGnJOoQ": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetPublicPlansLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "DeleteTenantUserLambdaVersionl888htErHOmiIkbHLVBzRCs6ZVptX7ZyST6G2ZPvQ": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "DeleteTenantUserLambdaFunction"
-              },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
-            }
-          },
-          "PaymentWebhookLambdaVersionC4lU82mPbbRrz1qKXGgtEAWS5PdM7uMjqoPrFCOWnGM": {
+          "PaymentWebhookLambdaVersionT1eyj0hYqCFAA6yyjFvPJMfyCKE7K1WIykAh979iuY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PaymentWebhookLambdaFunction"
               },
-              "CodeSha256": "QXB2XXzUX9Sua98NlobzPEl9VapX80L3Y0B4rpj6jJc="
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "RecordTCAcceptanceLambdaVersion3d7jYmGtnOEHn9eZ0zBbHPjczVzDCuNwr8n1MXvvjY": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "RecordTCAcceptanceLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "DeleteTenantUserLambdaVersionFgwCzPy2gvzR1LHHV1k8XdHedvC3elweCOpWClkgyc": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteTenantUserLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "GetPublicPlansLambdaVersionRULBAdscyLHKLXGxOAh28jXUS14fDZFLPWWzGfk": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetPublicPlansLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "CreateTenantUserLambdaVersionPslAxgthmOtgIXAyldbtQWPEmKMiCPCgjYVNiFBTc": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateTenantUserLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "CheckTCAcceptanceLambdaVersionPzgCYt3Z0WYNlIl1DQm9fj4F9Zfkl4WS9V3VIIN5Tg": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CheckTCAcceptanceLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
+            }
+          },
+          "PublicTenantOnboardingLambdaVersionFClLMV3EYsXO37GQWwzFpRBDzEPJICy9TAIVChvtI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "PublicTenantOnboardingLambdaFunction"
+              },
+              "CodeSha256": "LQoc9nSZxPPUUFNzVeT/tX7knXTDTp0MIHwn76wCBdU="
             }
           },
           "ApiGatewayRestApi": {
@@ -761,6 +813,45 @@
               }
             }
           },
+          "ApiGatewayResourcePublic": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "public",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourcePublicOnboarding": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourcePublic"
+              },
+              "PathPart": "onboarding",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourcePublicPlans": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourcePublic"
+              },
+              "PathPart": "plans",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayResourceTcDashacceptance": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -803,33 +894,6 @@
               }
             }
           },
-          "ApiGatewayResourcePublic": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "PathPart": "public",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourcePublicPlans": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourcePublic"
-              },
-              "PathPart": "plans",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
           "ApiGatewayMethodTenantsUsersOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -841,7 +905,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -857,9 +922,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -886,7 +952,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -902,9 +969,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -931,7 +999,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -947,9 +1016,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -959,6 +1029,53 @@
               },
               "ResourceId": {
                 "Ref": "ApiGatewayResourceOnboarding"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodPublicOnboardingOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourcePublicOnboarding"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -976,7 +1093,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -992,9 +1110,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -1021,7 +1140,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -1037,9 +1157,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -1066,7 +1187,8 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": true,
                     "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
                   },
                   "ResponseModels": {}
                 }
@@ -1082,9 +1204,10 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                      "method.response.header.Access-Control-Allow-Origin": "'https://main.dfvclvboq7vvrcn.amplifyapp.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -1345,6 +1468,52 @@
               "StartTenantOnboardingLambdaPermissionApiGateway"
             ]
           },
+          "ApiGatewayMethodPublicOnboardingPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourcePublicOnboarding"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "PublicTenantOnboardingLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "PublicTenantOnboardingLambdaPermissionApiGateway"
+            ]
+          },
           "ApiGatewayMethodTcDashacceptanceGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -1535,7 +1704,7 @@
               "GetPublicPlansLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1751174158905": {
+          "ApiGatewayDeployment1752709011986": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1547,6 +1716,7 @@
               "ApiGatewayMethodTenantsUsersOptions",
               "ApiGatewayMethodTenantsUsersIdVarOptions",
               "ApiGatewayMethodOnboardingOptions",
+              "ApiGatewayMethodPublicOnboardingOptions",
               "ApiGatewayMethodTcDashacceptanceOptions",
               "ApiGatewayMethodWebhooksPaymentOptions",
               "ApiGatewayMethodPublicPlansOptions",
@@ -1555,6 +1725,7 @@
               "ApiGatewayMethodTenantsUsersIdVarPut",
               "ApiGatewayMethodTenantsUsersIdVarDelete",
               "ApiGatewayMethodOnboardingPost",
+              "ApiGatewayMethodPublicOnboardingPost",
               "ApiGatewayMethodTcDashacceptanceGet",
               "ApiGatewayMethodTcDashacceptancePost",
               "ApiGatewayMethodWebhooksPaymentPost",
@@ -1715,6 +1886,43 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "StartTenantOnboardingLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "PublicTenantOnboardingLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "PublicTenantOnboardingLambdaFunction",
                   "Arn"
                 ]
               },
@@ -2053,85 +2261,94 @@
               "Name": "sls-administrador-technoagentes-dev-ServerlessDeploymentBucketName"
             }
           },
-          "CheckTCAcceptanceLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CheckTCAcceptanceLambdaVersionWP1iPpsZBj5jKoLKEuCgeL80tXES7JxdZ2JvfzZgqM"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-CheckTCAcceptanceLambdaFunctionQualifiedArn"
-            }
-          },
-          "CreateTenantUserLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateTenantUserLambdaVersionS16GohCwKkhHqBBY1yr9NUDnFiN6nl50bKGtKweL00"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-CreateTenantUserLambdaFunctionQualifiedArn"
-            }
-          },
-          "GetTenantUsersLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetTenantUsersLambdaVersionBdsPKGFaz714RMqcduZIUPR2s3IExozSWd21Gsb0wAE"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-GetTenantUsersLambdaFunctionQualifiedArn"
-            }
-          },
           "StartTenantOnboardingLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "StartTenantOnboardingLambdaVersion2ezgM6685Vu4o87INnabYBkpl6STNOd0qiFYqh1zA"
+              "Ref": "StartTenantOnboardingLambdaVersioneLnsQXlUQk0BXLDBwL5rNpoRjn0ryRCeiYtclbviUKU"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-StartTenantOnboardingLambdaFunctionQualifiedArn"
             }
           },
+          "GetTenantUsersLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetTenantUsersLambdaVersion4Q1YCXj7TBi9S0Ft7uyh5QOSv9RHFXn0TrKwtElPFQ"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-GetTenantUsersLambdaFunctionQualifiedArn"
+            }
+          },
           "UpdateTenantUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateTenantUserLambdaVersionJGdDDnHwISgX4PCU4cpqUE2BC9utG2eYyOFgcP4Nk"
+              "Ref": "UpdateTenantUserLambdaVersion09N45SY1e88LbBvZe7YoPqepzBfxkDHoFAt4WcNW1E"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-UpdateTenantUserLambdaFunctionQualifiedArn"
             }
           },
+          "PaymentWebhookLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "PaymentWebhookLambdaVersionT1eyj0hYqCFAA6yyjFvPJMfyCKE7K1WIykAh979iuY"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-PaymentWebhookLambdaFunctionQualifiedArn"
+            }
+          },
           "RecordTCAcceptanceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RecordTCAcceptanceLambdaVersionSfLUajMfa3Pg4b8nQgUg34PyUaywxAV5sJb2yS1Gs"
+              "Ref": "RecordTCAcceptanceLambdaVersion3d7jYmGtnOEHn9eZ0zBbHPjczVzDCuNwr8n1MXvvjY"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-RecordTCAcceptanceLambdaFunctionQualifiedArn"
             }
           },
-          "GetPublicPlansLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetPublicPlansLambdaVersionwGwq1a1KmLpPb0JsGiRWyZkrkfmnIKBOyKUGGnJOoQ"
-            },
-            "Export": {
-              "Name": "sls-administrador-technoagentes-dev-GetPublicPlansLambdaFunctionQualifiedArn"
-            }
-          },
           "DeleteTenantUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteTenantUserLambdaVersionl888htErHOmiIkbHLVBzRCs6ZVptX7ZyST6G2ZPvQ"
+              "Ref": "DeleteTenantUserLambdaVersionFgwCzPy2gvzR1LHHV1k8XdHedvC3elweCOpWClkgyc"
             },
             "Export": {
               "Name": "sls-administrador-technoagentes-dev-DeleteTenantUserLambdaFunctionQualifiedArn"
             }
           },
-          "PaymentWebhookLambdaFunctionQualifiedArn": {
+          "GetPublicPlansLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PaymentWebhookLambdaVersionC4lU82mPbbRrz1qKXGgtEAWS5PdM7uMjqoPrFCOWnGM"
+              "Ref": "GetPublicPlansLambdaVersionRULBAdscyLHKLXGxOAh28jXUS14fDZFLPWWzGfk"
             },
             "Export": {
-              "Name": "sls-administrador-technoagentes-dev-PaymentWebhookLambdaFunctionQualifiedArn"
+              "Name": "sls-administrador-technoagentes-dev-GetPublicPlansLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateTenantUserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateTenantUserLambdaVersionPslAxgthmOtgIXAyldbtQWPEmKMiCPCgjYVNiFBTc"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-CreateTenantUserLambdaFunctionQualifiedArn"
+            }
+          },
+          "CheckTCAcceptanceLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CheckTCAcceptanceLambdaVersionPzgCYt3Z0WYNlIl1DQm9fj4F9Zfkl4WS9V3VIIN5Tg"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-CheckTCAcceptanceLambdaFunctionQualifiedArn"
+            }
+          },
+          "PublicTenantOnboardingLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "PublicTenantOnboardingLambdaVersionFClLMV3EYsXO37GQWwzFpRBDzEPJICy9TAIVChvtI"
+            },
+            "Export": {
+              "Name": "sls-administrador-technoagentes-dev-PublicTenantOnboardingLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -2277,7 +2494,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "GET"
@@ -2287,11 +2504,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2305,7 +2520,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetTenantUsersLambdaVersionBdsPKGFaz714RMqcduZIUPR2s3IExozSWd21Gsb0wAE"
+        "versionLogicalId": "GetTenantUsersLambdaVersion4Q1YCXj7TBi9S0Ft7uyh5QOSv9RHFXn0TrKwtElPFQ"
       },
       "createTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2326,7 +2541,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
@@ -2336,11 +2551,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2354,7 +2567,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CreateTenantUserLambdaVersionS16GohCwKkhHqBBY1yr9NUDnFiN6nl50bKGtKweL00"
+        "versionLogicalId": "CreateTenantUserLambdaVersionPslAxgthmOtgIXAyldbtQWPEmKMiCPCgjYVNiFBTc"
       },
       "updateTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2375,7 +2588,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "PUT"
@@ -2385,11 +2598,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2403,7 +2614,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "UpdateTenantUserLambdaVersionJGdDDnHwISgX4PCU4cpqUE2BC9utG2eYyOFgcP4Nk"
+        "versionLogicalId": "UpdateTenantUserLambdaVersion09N45SY1e88LbBvZe7YoPqepzBfxkDHoFAt4WcNW1E"
       },
       "deleteTenantUser": {
         "handler": "src/api/tenant-users-handler.handler",
@@ -2424,7 +2635,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "DELETE"
@@ -2434,11 +2645,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2452,7 +2661,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "DeleteTenantUserLambdaVersionl888htErHOmiIkbHLVBzRCs6ZVptX7ZyST6G2ZPvQ"
+        "versionLogicalId": "DeleteTenantUserLambdaVersionFgwCzPy2gvzR1LHHV1k8XdHedvC3elweCOpWClkgyc"
       },
       "startTenantOnboarding": {
         "handler": "src/onboarding/onboarding-api-handler.handler",
@@ -2473,7 +2682,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
@@ -2483,11 +2692,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2501,7 +2708,44 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "StartTenantOnboardingLambdaVersion2ezgM6685Vu4o87INnabYBkpl6STNOd0qiFYqh1zA"
+        "versionLogicalId": "StartTenantOnboardingLambdaVersioneLnsQXlUQk0BXLDBwL5rNpoRjn0ryRCeiYtclbviUKU"
+      },
+      "publicTenantOnboarding": {
+        "handler": "src/onboarding/onboarding-api-handler.handler",
+        "iamRoleStatementsName": "public-onboarding-role",
+        "events": [
+          {
+            "http": {
+              "path": "public/onboarding",
+              "method": "post",
+              "cors": {
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
+                ],
+                "allowCredentials": true
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "administrador-technoagentes-dev-publicTenantOnboarding",
+        "package": {
+          "artifact": "c:\\Disco local\\MisProyectos\\Administrador Technoagentes\\.serverless\\publicTenantOnboarding.zip"
+        },
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "PublicTenantOnboardingLambdaVersionFClLMV3EYsXO37GQWwzFpRBDzEPJICy9TAIVChvtI"
       },
       "checkTCAcceptance": {
         "handler": "src/api/tc-acceptance-handler.handler",
@@ -2522,7 +2766,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "GET"
@@ -2532,11 +2776,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2550,7 +2792,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CheckTCAcceptanceLambdaVersionWP1iPpsZBj5jKoLKEuCgeL80tXES7JxdZ2JvfzZgqM"
+        "versionLogicalId": "CheckTCAcceptanceLambdaVersionPzgCYt3Z0WYNlIl1DQm9fj4F9Zfkl4WS9V3VIIN5Tg"
       },
       "recordTCAcceptance": {
         "handler": "src/api/tc-acceptance-handler.handler",
@@ -2571,7 +2813,7 @@
                 "claims": []
               },
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
@@ -2581,11 +2823,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2599,7 +2839,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "RecordTCAcceptanceLambdaVersionSfLUajMfa3Pg4b8nQgUg34PyUaywxAV5sJb2yS1Gs"
+        "versionLogicalId": "RecordTCAcceptanceLambdaVersion3d7jYmGtnOEHn9eZ0zBbHPjczVzDCuNwr8n1MXvvjY"
       },
       "paymentWebhook": {
         "handler": "src/api/webhook-handler.handler",
@@ -2610,7 +2850,7 @@
               "path": "webhooks/payment",
               "method": "post",
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
@@ -2620,11 +2860,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2638,7 +2876,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PaymentWebhookLambdaVersionC4lU82mPbbRrz1qKXGgtEAWS5PdM7uMjqoPrFCOWnGM"
+        "versionLogicalId": "PaymentWebhookLambdaVersionT1eyj0hYqCFAA6yyjFvPJMfyCKE7K1WIykAh979iuY"
       },
       "getPublicPlans": {
         "handler": "src/api/public-plans-handler.handler",
@@ -2648,7 +2886,7 @@
               "path": "public/plans",
               "method": "get",
               "cors": {
-                "origin": "*",
+                "origin": "https://main.dfvclvboq7vvrcn.amplifyapp.com",
                 "methods": [
                   "OPTIONS",
                   "GET"
@@ -2658,11 +2896,9 @@
                   "X-Amz-Date",
                   "Authorization",
                   "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent",
-                  "X-Amzn-Trace-Id"
+                  "X-Amz-Security-Token"
                 ],
-                "allowCredentials": false
+                "allowCredentials": true
               },
               "integration": "AWS_PROXY"
             }
@@ -2676,7 +2912,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetPublicPlansLambdaVersionwGwq1a1KmLpPb0JsGiRWyZkrkfmnIKBOyKUGGnJOoQ"
+        "versionLogicalId": "GetPublicPlansLambdaVersionRULBAdscyLHKLXGxOAh28jXUS14fDZFLPWWzGfk"
       }
     },
     "resources": {
@@ -2867,7 +3103,7 @@
         ],
         "excludeDevDependencies": false,
         "artifactsS3KeyDirname": "serverless/administrador-technoagentes/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z"
+        "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -2881,7 +3117,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1751174214032-2025-06-29T05:16:54.032Z",
+    "artifactDirectoryName": "serverless/administrador-technoagentes/dev/1752709076295-2025-07-16T23:37:56.295Z",
     "artifact": ""
   }
 }
