@@ -1,0 +1,6 @@
+{
+  "title": "Habilitar y configurar CORS en API Gateway",
+  "body": "## Descripción\nEste PR habilita y configura CORS en la API Gateway para permitir solicitudes desde el frontend alojado en `https://main.dfvclvboq7vvrcn.amplifyapp.com`.\n\n## Cambios realizados\n- Configuración de CORS en serverless.yml para todos los endpoints\n- Script para configurar CORS directamente en API Gateway existente\n- Configuración de encabezados CORS necesarios:\n  - Access-Control-Allow-Origin: 'https://main.dfvclvboq7vvrcn.amplifyapp.com'\n  - Access-Control-Allow-Headers: Content-Type, Authorization, etc.\n  - Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\n\n## Pruebas realizadas\n- Verificación de despliegue exitoso en API Gateway\n- Confirmación de que los encabezados CORS están configurados correctamente",
+  "head": "feature/enable-cors",
+  "base": "master"
+}
