@@ -12,7 +12,10 @@ provider:
   name: aws
   runtime: nodejs18.x
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'us-west-2'}
+  deploymentBucket:
+    name: mi-bucket-personalizado-${self:provider.stage}
+    serverSideEncryption: AES256
   environment:
     ENVIRONMENT: ${self:provider.stage}
     TENANTS_TABLE: !Ref TenantsTable

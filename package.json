@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Script para habilitar CORS en API Gateway",
   "main": "enable-cors.js",
+  "scripts": {
+    "deploy:dev": "serverless deploy --stage dev --region us-west-2",
+    "deploy:prod": "serverless deploy --stage prod --region us-west-2",
+    "test:aws": "node test-aws-connection.js"
+  },
   "dependencies": {
     "aws-sdk": "^2.1450.0"
   },
